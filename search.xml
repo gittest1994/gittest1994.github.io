@@ -1,0 +1,733 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[Welcome to HandyControl]]></title>
+    <url>%2Fhandycontrol%2Findex.html</url>
+    <content type="text"><![CDATA[HandyControl is a WPF control library that rewrites almost all native styles and includes more than 70 custom controls (increasingly). Requirements DownloadNugetNuget is a compiled release : HandyControl-Nuget There is a custom version : HandyControls-Nuget Nuget are generally released at least once a month, so there is a high probability that this document will differ from this document. Any discrepancies are subject to this document. GithubThe latest source code on Github is: HandyControl-Github There is a custom version : HandyControls-Github Github is generally updated every day and is relatively unsuitable for production. The update speed of the document must not keep up with the latest Github source code. There are places where the entry and exit are based on the Demo example on Github. Project Structure Introductionthe whole frameAfter cloning the source code from Github, go to the src folder. The folder structure is as follows: There are 4 solutions sln files here. Net_GE45 means that the .Net version is greater than or equal to 4.5. The Shared folder is used to store the code of the shared project. The five folders in the figure each contain two subfolders, for example, two shared subfolders in Shared: They store the source code of the control and the sample source of the control. Source structureWe use HandyControl.sln as an example to illustrate, use VS2019 to open the solution: If you want to start the example and see the effect of the control, please use HandyControlDemo_[specified item type] as the startup item. As shown in the figure, HandyControlDemo_Net_GE45 has been used as the startup item. Most of the public source code is in the Shared folder, and some of the code that needs to be customized for a particular project type is proposed to be placed in its own folder. The HandyControl source code (mainly in HandyControl_Shared) mainly contains 7 folders, and their descriptions are as follows: Name Use Controls Background interaction logic with all controls Data Basic data definitions required by the control library Expression Extracted from Microsoft.Expression.Drawing Interactivity Extracted from Microsoft.Expression.Interactions &amp; System.Windows.Interactivity and made some modifications Properties Contains control library properties and language packs Themes Contains all xaml definitions for the control library Tools Mainly contains the help methods and extension methods required by the control library Each control in Controls can generally find the corresponding xaml definition in Themes. Compile source code Please confirm that your development environment meets the requirements before compiling. Open HandyControl.sln and select the specified environment to compile in the Solution Configuration drop-down box: Compile source code with Powershellgo to Build folder and open Powershell here, then execute this command 1.\build.ps1]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Additional attribute]]></title>
+    <url>%2Fhandycontrol%2Fattach%2Findex.html</url>
+    <content type="text"><![CDATA[Additional property source code in the Controls / Attach folder: Classes ending with Element can set some common properties for all controls. Classes ending with Attach can only set related properties for a control.]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Basic xaml definition]]></title>
+    <url>%2Fhandycontrol%2Fbasic_xaml%2Findex.html</url>
+    <content type="text"><![CDATA[The basic xaml definitions are in the Basic folder, and their internal structure is as follows: A description of them is given in the following table: Name Use Colors contains 3 built-in color definition files Basic.xaml Wrapped basic xaml definitions Behaviors.xaml Contains all behavior definitions Brushes.xaml Contains all brush definitions Converters.xaml Contains all converter definitions Effects.xaml Contains all effect definitions Fonts.xaml Contains all font size definitions Geometries.xaml Contains all geometry definitions, mostly for Path Paths.xaml contains all Path path definitions Sizes.xaml Contains all size definitions]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Data]]></title>
+    <url>%2Fhandycontrol%2Fdata%2Findex.html</url>
+    <content type="text"><![CDATA[Coming Soon]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[建设中]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2Findex.html</url>
+    <content type="text"><![CDATA[建设中]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Native Control]]></title>
+    <url>%2Fhandycontrol%2Fnative_controls%2Findex.html</url>
+    <content type="text"><![CDATA[Native controls refer to the controls that come with the WPF framework. In addition to this, simple extensions are implemented through additional properties. In HandyControl, almost all native controls have a base style that is implemented by default (that is, when a style is defined, the given Key value is not displayed). The base style generally has the word “Base”. It is not recommended for users to use it directly in the view layer. The appropriate usage scenario is a resource file. FAQ How can I override the default implementation of the style? Can I give BaseOn without a Key? You can use this syntax: BasedOn=&quot;{StaticResource {x:Type Button}}&quot; to override the default style of Button.]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Globalization]]></title>
+    <url>%2Fhandycontrol%2Flangs%2Findex.html</url>
+    <content type="text"><![CDATA[Way of useThe language package to be used can be specified by ConfigHelper.Instance.SetLang(string lang), English (en) is used by default. The language package that comes with the control library is generally used internally by the control library, but users can also use it in the following two ways: xamlThe first step is to introduce the namespace: xmlns:hc=&quot;https://handyorg.github.io/handycontrol&quot;The second step is to use the language pack: &lt;TextBlock Text=&quot;{x:Static hc:Lang.Cancel}&quot;/&gt; C#HandyControl.Properties.Langs.Lang.Cancel The control library does not support dynamic language package switching, and there will be no support in the future. Language packsThe language packs included with the control library include: Simplified Chinese (zh-cn) English (en) Persian (fa) French (fr) Korean (ko-kr) The default is English (en). If you need to expand on your own, it is recommended to use the open source plugin: ResXManager to maintain all language packs. After the control library is referenced, the language package folder is generated in the running directory, and its naming style is like zh-cn, en, and so on.]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Quick start]]></title>
+    <url>%2Fhandycontrol%2Fquick_start%2Findex.html</url>
+    <content type="text"><![CDATA[Easy WaysDownload the source code or reference the control library in Nuget mode or use ExtensionSource link: HandyControl-GithubNuget link: HandyControl-NugetExtension link HandyControl-Extension There is a Custom Version Called HandyControlsSource link: HandyControls-GithubNuget link (Custom Version): HandyControls-NugetExtension link (Custom Version) HandyControls-Extension Nuget If you use custom version you don’t need to add the following codes Add the following code to App.xaml: 12345678&lt;Application.Resources&gt; &lt;ResourceDictionary&gt; &lt;ResourceDictionary.MergedDictionaries&gt; &lt;ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml"/&gt; &lt;ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml"/&gt; &lt;/ResourceDictionary.MergedDictionaries&gt; &lt;/ResourceDictionary&gt;&lt;/Application.Resources&gt; Last stepAdd a namespace: xmlns:hc=&quot;https://handyorg.github.io/handycontrol&quot; Extensionjust download and install handycontrol template from marketplace. in this way you dont need to add anything after installing hc, create new project with handycontrol template]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Thanks]]></title>
+    <url>%2Fhandycontrol%2Ftnx%2Findex.html</url>
+    <content type="text"><![CDATA[Thanks to the following Coder for providing code contributions Thanks to the following organizations for providing open source licenses Thanks to the following donors]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Tools]]></title>
+    <url>%2Fhandycontrol%2Ftools%2Findex.html</url>
+    <content type="text"><![CDATA[Tools]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[DataGridAttach]]></title>
+    <url>%2Fhandycontrol%2Fattach%2FdataGridAttach%2Findex.html</url>
+    <content type="text"><![CDATA[This additional attribute is specific to the hc internal DataGrid style and is not recommended for direct use. Attributes Name Use ApplyDefaultStyle Whether to apply the default style TextColumnStyle Text Column Style EditingTextColumnStyle Edit Text Column Style ComboBoxColumnStyle Combo Box Column Style EditingComboBoxColumnStyle Editing combo box column style CheckBoxColumnStyle Checkbox Column Style EditingCheckBoxColumnStyle Checkbox column style when editing ShowRowNumber Whether to display the line number]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[BorderElement]]></title>
+    <url>%2Fhandycontrol%2Fattach%2FborderElement%2Findex.html</url>
+    <content type="text"><![CDATA[Attributes Name Use CornerRadius Set border fillet values Circular Whether it is rendered as a circle True is Yes, False is No Use CasesCornerRadius Set the border fillet value1234&lt;StackPanel Width="200" VerticalAlignment="Center"&gt; &lt;Button Content="Button" hc:BorderElement.CornerRadius="15" HorizontalAlignment="Stretch"/&gt; &lt;TextBox Text="TextBox" hc:BorderElement.CornerRadius="15" Margin="0,10,0,0"/&gt;&lt;/StackPanel&gt; CircularImplement a circular border with the attached property of BorderElement.Circular 1&lt;Border Style="&#123;StaticResource BorderCircular&#125;" Background="OrangeRed" Width="100" Height="100"/&gt;]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[BackgroundSwitchElement]]></title>
+    <url>%2Fhandycontrol%2Fattach%2FbackgroundSwitchElement%2Findex.html</url>
+    <content type="text"><![CDATA[Attributes Name Use MouseHoverBackground Set mouse hover background color MouseDownBackground Set mouse down background color Use CasesMouseHoverBackground Set Mouse hover background colorIn the style or template we add the following trigger code: 123&lt;Trigger Property="IsMouseOver" Value="True"&gt; &lt;Setter Property="Background" TargetName="Chrome" Value="&#123;Binding Path=(hc:BackgroundSwitchElement.MouseHoverBackground),RelativeSource=&#123;RelativeSource TemplatedParent&#125;&#125;"/&gt;&lt;/Trigger&gt; Then we can use this property: 1&lt;Target control hc:BackgroundSwitchElement.MouseHoverBackground ="Blue"/&gt; MouseDownBackground Set Mouse down background colorIn the style or template we add the following trigger code: 123&lt;Trigger Property="IsPressed" Value="True"&gt; &lt;Setter Property="Background" TargetName="Chrome" Value="&#123;Binding Path=(hc:BackgroundSwitchElement.MouseDownBackground),RelativeSource=&#123;RelativeSource TemplatedParent&#125;&#125;"/&gt;&lt;/Trigger&gt; Then we can use this property: 1&lt;Target control hc:BackgroundSwitchElement.MouseDownBackground ="Yellow"/&gt;]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[GlobalShortcut]]></title>
+    <url>%2Fhandycontrol%2Fattach%2FglobalShortcut%2Findex.html</url>
+    <content type="text"><![CDATA[With this property you can use shortcut keys Name Use Host Desired window 1hc:GlobalShortcut.Host="True" 1234&lt;hc:GlobalShortcut.KeyBindings&gt; &lt;KeyBinding Modifiers="Control+Alt" Key="I" Command="&#123;Binding GlobalShortcutInfoCmd&#125;"/&gt; &lt;KeyBinding Modifiers="Control+Alt" Key="E" Command="&#123;Binding GlobalShortcutWarningCmd&#125;"/&gt; &lt;/hc:GlobalShortcut.KeyBindings&gt;]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[IconSwitchElement]]></title>
+    <url>%2Fhandycontrol%2Fattach%2FiconSwitchElement%2Findex.html</url>
+    <content type="text"><![CDATA[Inherited from IconElement Attributes Name Use GeometrySelected Geometry when selected]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[IconElement]]></title>
+    <url>%2Fhandycontrol%2Fattach%2FiconElement%2Findex.html</url>
+    <content type="text"><![CDATA[Attributes Name Use Geometry Geometry Width Icon Width Height Icon Height Use CasesGeometry Geometric shape1234&lt;StackPanel Width="200" VerticalAlignment="Center"&gt; &lt;Button Content="Button" HorizontalAlignment="Stretch"/&gt; &lt;Button Content="Button" hc:IconElement.Geometry="&#123;StaticResource CalendarGeometry&#125;" HorizontalAlignment="Stretch" Margin="0,10,0,0"/&gt;&lt;/StackPanel&gt;]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[InfoElement]]></title>
+    <url>%2Fhandycontrol%2Fattach%2FinfoElement%2Findex.html</url>
+    <content type="text"><![CDATA[Inherited from TitleElement Attributes Name Use Placeholder Placeholder (input prompt) Necessary Required? Symbol Tag Information ContentHeight Content Height MinContentHeight Minimum Content Height MaxContentHeight Maximum Content Height Use CasesPlaceholder1234&lt;StackPanel Width="200" VerticalAlignment="Center"&gt; &lt;hc:SearchBar/&gt; &lt;hc:SearchBar hc:InfoElement.Placeholder="请输入查询条件" Style="&#123;StaticResource SearchBarExtend&#125;" Margin="0,16,0,0"/&gt;&lt;/StackPanel&gt; Necessary1234 &lt;hc:SearchBar hc:InfoElement.Placeholder="Please enter the query criteria" Hc:InfoElement.Title="Query Condition" Margin="10,10" hc:InfoElement.Necessary="True" Style="&#123;StaticResource SearchBarExtend&#125;"/&gt; Where hc:InfoElement.Title=&quot;query condition&quot; inherited from parent class effect: Symbol1234 &lt;hc:SearchBar hc:InfoElement.Placeholder="Please enter the content" Hc:InfoElement.Title="This item is required" Style="&#123;StaticResource SearchBarExtend&#125;" Margin="10,10" hc:InfoElement.Necessary="True" Hc:InfoElement.Symbol="x"/&gt; ContentHeight12345 &lt;hc:SearchBar hc:InfoElement.Placeholder="Please enter the query criteria" Hc:InfoElement.ContentHeight="50" Hc:InfoElement.Title="Query Condition" Margin="10,10" hc:InfoElement.Necessary="True" Style="&#123;StaticResource SearchBarExtend&#125;"/&gt;]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[EdgeElement]]></title>
+    <url>%2Fhandycontrol%2Fattach%2FedgeElement%2Findex.html</url>
+    <content type="text"><![CDATA[Attributes Name Use LeftContent Left Boundary Content TopContent Top Boundary Content RightContent Right Side Content BottomContent Bottom border content ShowEdgeContent Whether to display border content]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[LinkElement]]></title>
+    <url>%2Fhandycontrol%2Fattach%2FlinkElement%2Findex.html</url>
+    <content type="text"><![CDATA[An attached property is intended to be used as a type of global property that is settable on any object. Attributes Name Use Link Gets or sets Link Address 1&lt;hc:Shield controls:LinkElement.Link="https://github.com" Command="hc:ControlCommands.OpenLink"/&gt;]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[PasswordBoxAttach]]></title>
+    <url>%2Fhandycontrol%2Fattach%2FpasswordBoxAttach%2Findex.html</url>
+    <content type="text"><![CDATA[This additional attribute is specific to the hc internal password box style and is not recommended for direct use. Attributes Name Use IsMonitoring Whether to monitor the password length PasswordLength Password Length]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[PanelElement]]></title>
+    <url>%2Fhandycontrol%2Fattach%2FpanelElement%2Findex.html</url>
+    <content type="text"><![CDATA[Attributes Name Use FluidMoveBehavior Set the fluid movement mode of the panel Use CasesFluidMoveBehavior Set the fluid movement mode of the panel1&lt;hc:HoneycombPanel hc:PanelElement.FluidMoveBehavior="&#123;StaticResource BehaviorXY200&#125;" /&gt; When adding or removing elements to the panel container, you can see the animation of fluid movement.]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[RectangleAttach]]></title>
+    <url>%2Fhandycontrol%2Fattach%2FrectangleAttach%2Findex.html</url>
+    <content type="text"><![CDATA[Attributes Name Use CornerRadius Set Rectangle Rounded Corner Value Use CasesCornerRadius Set Rectangle1&lt;Rectangle Fill="Red" Width="100" Height="60" hc:RectangleAttach.Circular="True" /&gt;]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[StatusSwitchElement]]></title>
+    <url>%2Fhandycontrol%2Fattach%2FstatusSwitchElement%2Findex.html</url>
+    <content type="text"><![CDATA[Attributes Name Use CheckedElement Elements displayed when selected HideUncheckedElement Hide Elements Use CasesCheckedElement The element that is displayed when selectedThis additional property applies to the ToggleButton and subclass controls, which are used to control what needs to be displayed when the selection class control is selected. The default value is False and is not displayed. 123456789101112&lt;ToggleButton Style="&#123;DynamicResource ToggleButtonCustom&#125;" Margin="5"&gt; &lt;!--Checked--&gt; &lt;hc:StatusSwitchElement.CheckedElement&gt; &lt;Border Width="60" Height="20" CornerRadius="4" BorderThickness="1" BorderBrush="&#123;DynamicResource BorderBrush&#125;"&gt; &lt;Ellipse Width="20" Height="20" Fill="&#123;DynamicResource PrimaryBrush&#125;" StrokeThickness="1" Stroke="&#123;DynamicResource BorderBrush&#125;"/&gt; &lt;/Border&gt; &lt;/hc:StatusSwitchElement.CheckedElement&gt; &lt;!--Default--&gt; &lt;Border Width="80" Height="30" CornerRadius="0" BorderThickness="1" BorderBrush="&#123;DynamicResource BorderBrush&#125;"&gt; &lt;Ellipse Width="20" Height="20" Fill="&#123;DynamicResource BorderBrush&#125;" StrokeThickness="1" Stroke="&#123;DynamicResource BorderBrush&#125;"/&gt; &lt;/Border&gt;&lt;/ToggleButton&gt; effect: Default state (when not selected) and selected state HideUncheckedElement Whether to hide elementsWhether to hide the default content when the control is selected, the default value is False, not hidden 123456789101112131415161718192021222324252627&lt;StackPanel VerticalAlignment="Center" HorizontalAlignment="Center"&gt; &lt;ToggleButton IsChecked="True" Style="&#123;DynamicResource ToggleButtonCustom&#125;" Margin="5"&gt; &lt;!--Checked--&gt; &lt;hc:StatusSwitchElement.CheckedElement&gt; &lt;Border Width="60" Height="20" CornerRadius="0" BorderThickness="1" BorderBrush="&#123;DynamicResource BorderBrush&#125;"&gt; &lt;Ellipse Width="18" Height="18" Fill="&#123;DynamicResource PrimaryBrush&#125;"/&gt; &lt;/Border&gt; &lt;/hc:StatusSwitchElement.CheckedElement&gt; &lt;!--Default--&gt; &lt;Border Width="80" Height="30" CornerRadius="0" BorderThickness="1" BorderBrush="&#123;DynamicResource BorderBrush&#125;"&gt; &lt;Ellipse Width="18" Height="18" Fill="&#123;DynamicResource BorderBrush&#125;"/&gt; &lt;/Border&gt; &lt;/ToggleButton&gt;&lt;!--Explicitly set the hidden default content element when selected--&gt; &lt;ToggleButton IsChecked="True" Style="&#123;DynamicResource ToggleButtonCustom&#125;" hc:StatusSwitchElement.HideUncheckedElement="True" Margin="5"&gt; &lt;!--Checked--&gt; &lt;hc:StatusSwitchElement.CheckedElement&gt; &lt;Border Width="60" Height="20" CornerRadius="0" BorderThickness="1" BorderBrush="&#123;DynamicResource BorderBrush&#125;"&gt; &lt;Ellipse Width="18" Height="18" Fill="&#123;DynamicResource PrimaryBrush&#125;"/&gt; &lt;/Border&gt; &lt;/hc:StatusSwitchElement.CheckedElement&gt; &lt;!--Default--&gt; &lt;Border Width="80" Height="30" CornerRadius="0" BorderThickness="1" BorderBrush="&#123;DynamicResource BorderBrush&#125;"&gt; &lt;Ellipse Width="18" Height="18" Fill="&#123;DynamicResource BorderBrush&#125;"/&gt; &lt;/Border&gt; &lt;/ToggleButton&gt;&lt;/StackPanel&gt; effect: The above two attributes are used in combination, which can easily control the display function of the state of the selected class control, and can be reasonably adjusted according to the above cases.]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[TextBlockAttach]]></title>
+    <url>%2Fhandycontrol%2Fattach%2FtextBlockAttach%2Findex.html</url>
+    <content type="text"><![CDATA[Attributes Name Use AutoTooltip Set whether to show tooltips automatically Use CasesAutoTooltip Set whether to show tooltips automatically123&lt;hc:SimplePanel Width="100" VerticalAlignment="Center" HorizontalAlignment="Center"&gt; &lt;TextBlock hc:TextBlockAttach.AutoTooltip="True" Text="EEEEEEEEEEEEEEEEEEEE"/&gt;&lt;/hc:SimplePanel&gt;]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[TipElement]]></title>
+    <url>%2Fhandycontrol%2Fattach%2FtipElement%2Findex.html</url>
+    <content type="text"><![CDATA[Attributes Name Use Placement Prompt Element Display Position Visibility Visibility StringFormat StringFormat Use CasesPlacement Prompt element display positionThis attribute is used to set the display position of the prompt element. Currently supports BottomRight and TopLeft (default) 1234567891011121314151617181920212223&lt;hc:RangeSlider Width="400" hc:TipElement.Visibility="Visible" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Maximum="100" ValueEnd="60" TickFrequency="10" Margin="0,32,0,0"/&gt;&lt;hc:RangeSlider Width="400" hc:TipElement.Visibility="Visible" hc:TipElement.Placement="BottomRight" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Maximum="100" ValueEnd="60" TickFrequency="10" Margin="0,32,0,0"/&gt;&lt;hc:RangeSlider Width="400" hc:TipElement.Visibility="Visible" hc:TipElement.Placement="Bottom" hc:TipElement.StringFormat="#0.00" ValueEnd="5" TickPlacement="Both" Margin="0,32,0,0"/&gt; effect]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[TitleElement]]></title>
+    <url>%2Fhandycontrol%2Fattach%2FtitleElement%2Findex.html</url>
+    <content type="text"><![CDATA[Attributes Name Use Title Title Information Background Title Background Color Foreground Title Font Color BorderBrush Title Border Color TitleAlignment Title Alignment TitleWidth Title Width Use CasesTitle12 &lt;hc:TextBox hc:TitleElement.Title="Title Information" Margin="10,10"&gt;&lt;/hc:TextBox&gt; TitleAlignment12345678 &lt;!--The title is on the top side --&gt; &lt;hc:TextBox hc:TitleElement.Title="Title Information" Hc:TitleElement.TitleAlignment="Top" Margin="10,10"&gt;&lt;/hc:TextBox&gt; &lt;!--The title is on the left --&gt; &lt;hc:TextBox hc:TitleElement.Title="Title Information" Hc:TitleElement.TitleAlignment="Left" Margin="10,10"&gt;&lt;/hc:TextBox&gt; TitleWidth12345678910 &lt;!--Set TitleWidth to Auto--&gt; &lt;hc:TextBox hc:TitleElement.Title="Title Information" Hc:TitleElement.TitleAlignment="Left" Hc:TitleElement.TitleWidth="Auto" Margin="10,10"&gt;&lt;/hc:TextBox&gt; &lt;!--Set TitleWidth to a specific value --&gt; &lt;hc:TextBox hc:TitleElement.Title="Title Information" Hc:TitleElement.TitleAlignment="Left" Hc:TitleElement.TitleWidth="60" Margin="10,10"&gt;&lt;/hc:TextBox&gt;]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[VisualElement]]></title>
+    <url>%2Fhandycontrol%2Fattach%2FvisualElement%2Findex.html</url>
+    <content type="text"><![CDATA[Attributes Name Use HighlightBrush Set Control Highlight Color Text Set text content Use CasesHighlightBrush Set control highlight color1234567891011&lt;UniformGrid Margin="22,22,0,0" Rows="2" Columns="2"&gt; &lt;RadioButton Margin="10,10,0,0" Background="&#123;DynamicResource SecondaryRegionBrush&#125;" Style="&#123;StaticResource RadioButtonIcon&#125;" Content="RadioButton" IsChecked="True" GroupName="radio1"/&gt; &lt;RadioButton Margin="10,10,0,0" BorderThickness="1" Style="&#123;StaticResource RadioButtonIcon&#125;" hc:VisualElement.HighlightBrush="YellowGreen" Content="RadioButton" GroupName="radio2"/&gt; &lt;/UniformGrid&gt; The following screenshot is a set of highlight comparison results when selected. The left picture is the style default color, and the right is the personal custom color. Text Set text contentIt is mainly used to set the auxiliary text of the control. When the control does not have appropriate properties for displaying the text, this additional property can be set in the custom style. For example: when the custom progress bar needs to display text, it lacks the property of displaying extra text content, and the corresponding text can be displayed through a custom style, with Text as the text content carrying property Custom style: 1234567891011121314151617181920&lt;Style x: Key = "ProgressBarBaseStyle" TargetType = "ProgressBar"&gt; &lt;Setter Property = "controls: VisualElement.Text"&gt; &lt;Setter.Value&gt; ..... ignore code ... &lt;/Setter.Value&gt; &lt;/ Setter&gt; &lt;Setter Property = "Template"&gt; &lt;Setter.Value&gt; &lt;ControlTemplate TargetType = "ProgressBar"&gt; &lt;controls: SimplePanel x: Name = "TemplateRoot"&gt;.... ignore code ... &lt;controls: SimplePanel HorizontalAlignment = "Left"&gt; .... ignore code ... &lt;TextBlock HorizontalAlignment = "Center" VerticalAlignment = "Center" Foreground = "&#123;DynamicResource TextIconBrush&#125;" Text = "&#123;Binding Path = (controls: VisualElement.Text), RelativeSource = &#123;RelativeSource TemplatedParent&#125;&#125;" /&gt; &lt;/ controls: SimplePanel&gt; &lt;/ controls: SimplePanel&gt; &lt;/ ControlTemplate&gt; &lt;/Setter.Value&gt; &lt;/ Setter&gt;&lt;/ Style&gt; Use in xaml: 12345 &lt;UniformGrid Margin = "22,22,0,0" Rows = "2" Columns = "2"&gt; &lt;ProgressBar Style = "&#123;DynamicResource ProgressBarDanger&#125;" hc: VisualElement.Text = "This is visual text" Background = "YellowGreen"&gt; &lt;/ ProgressBar&gt; &lt;/ UniformGrid&gt; effect:]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Brush]]></title>
+    <url>%2Fhandycontrol%2Fbasic_xaml%2Fbrushes%2Findex.html</url>
+    <content type="text"><![CDATA[The brush is based on color, and the existing brush is defined as follows: Name Use PrimaryBrush Main Color DarkPrimaryBrush Main Color (Dark) DangerBrush Error, danger DarkDangerBrush Error, Danger (Dark) WarningBrush Warning DarkWarningBrush Warning (Dark) InfoBrush Information DarkInfoBrush Information (Dark) SuccessBrush Success DarkSuccessBrush Success (Dark) VioletBrush Main Color (Violet) Only Custom Version DarkVioletBrush Main Color (Violet) Only Custom Version PrimaryTextBrush Main Text SecondaryTextBrush Secondary Text ThirdlyTextBrush Final Text ReverseTextBrush Inverted Text TextIconBrush General for text or icons on a dark background BorderBrush Border SecondaryBorderBrush Secondary Border BackgroundBrush Main Background Color RegionBrush Region Block Background SecondaryRegionBrush Secondary Block Background ThirdlyRegionBrush Final Block Background TitleBrush Title Background DefaultBrush Default Color DarkDefaultBrush Secondary default color AccentBrush Reminder DarkAccentBrush Reminder (Dark) DarkMaskBrush Use as a mask DarkOpacityBrush Translucent Background MainContentBackgroundBrush Only Custom Version MainContentForegroundBrush Only Custom Version MainContentForegroundDrawingBrush Only Custom Version Example：Foreground=&quot;{DynamicResource PrimaryBrush}&quot;]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Color]]></title>
+    <url>%2Fhandycontrol%2Fbasic_xaml%2Fcolors%2Findex.html</url>
+    <content type="text"><![CDATA[There are three built-in color xaml definitions, as described in the following table: Name Use Colors.xaml Default configuration ColorsDark.xaml Dark Configuration ColorsViolet.xaml Purple Configuration The same color name is defined in each file, except that the color values are different. The description of the color names is shown in the following table: Name Use PrimaryColor Main Color DarkPrimaryColor Main Color (Dark) DangerColor Error, danger DarkDangerColor Error, Danger (Dark) WarningColor Warning DarkWarningColor Warning (Dark) InfoColor Information DarkInfoColor Information (Dark) SuccessColor Success DarkSuccessColor Success (Dark) VioletColor Main Color (Violet) Only Custom Version DarkVioletColor Main Color (Violet) Only Custom Version PrimaryTextColor Main Text SecondaryTextColor Secondary Text ThirdlyTextColor Last Text ReverseTextColor Inverted Text TextIconColor General for text or icons on a dark background BorderColor Border SecondaryBorderColor Secondary Border BackgroundColor Main Background Color RegionColor Block Background SecondaryRegionColor Secondary Block Background ThirdlyRegionColor Final Block Background TitleColor Title Background SecondaryTitleColor Subtitle Background DefaultColor Default Color DarkDefaultColor Secondary default color AccentColor Reminder DarkAccentColor Reminder (Dark) DarkMaskColor Use as a mask DarkOpacityColor Translucent Background BlurGradientValue Background for blurry windows only MainContentForegroundColor Only Custom Version MainContentBackgroundColor Only Custom Version ForthlyRegionColor Only Custom Version Example：Color=&quot;{DynamicResource PrimaryColor}&quot;]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Behavior]]></title>
+    <url>%2Fhandycontrol%2Fbasic_xaml%2Fbehaviors%2Findex.html</url>
+    <content type="text"><![CDATA[Fluid movement Name Use BehaviorXY200 Fluid Movement Behavior, x, y Axis Motion, 200ms End Animation BehaviorX200 Fluid Movement Behavior, x-Axis Motion, 200ms End Animation BehaviorY200 Fluid Movement Behavior, y-axis Motion, 200ms End Animation BehaviorXY400 Fluid Movement Behavior, x, y Axis Motion, 400ms End Animation BehaviorX400 Fluid Movement Behavior, x-Axis Motion, 400ms End Animation BehaviorY400 Fluid Movement Behavior, y-axis Motion, 400ms End Animation Example：hc:PanelElement.FluidMoveBehavior=&quot;{StaticResource BehaviorXY200}&quot;]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[WindowAttach]]></title>
+    <url>%2Fhandycontrol%2Fattach%2FwindowAttach%2Findex.html</url>
+    <content type="text"><![CDATA[Attributes Name Use IsDragElement Whether to allow the current element to drag the form IgnoreAltF4 Whether to ignore the shortcuts Alt and F4 (the keyboard quickly exits or ends the currently running application) ShowInTaskManager Whether the form is displayed in the task manager Use CasesIsDragElement Whether to allow the current element to drag the form123456789101112131415&lt;hc:BlurWindow x:Class="Class namespace" .....Regular item...... WindowStartupLocation="CenterScreen" ShowTitle="True" Style="&#123;DynamicResource WindowBlur&#125;" xmlns:hc="https://ghost1372.github.io/handycontrol" d:DesignHeight="450" d:DesignWidth="800"&gt; &lt;hc:SimplePanel&gt; &lt;Rectangle VerticalAlignment="Top" Margin="10" Height="30" RadiusX="4" RadiusY="4" Stroke="&#123;DynamicResource BorderBrush&#125;" StrokeDashArray="2,2"/&gt; &lt;Border hc:WindowAttach.IsDragElement="True" VerticalAlignment="Top" Margin="11" Height="28" Background="&#123;DynamicResource DarkDefaultBrush&#125;" CornerRadius="4"&gt; &lt;TextBlock Text="DragHere" Style="&#123;StaticResource TextBlockDefault&#125;"/&gt; &lt;/Border&gt; &lt;Button HorizontalAlignment="Right" Margin="0,15,15,0" VerticalAlignment="Top" Padding="0" Height="20" Width="20" Style="&#123;StaticResource ButtonPrimary&#125;" hc:IconElement.Geometry="&#123;StaticResource CloseGeometry&#125;" hc:BorderElement.CornerRadius="15"/&gt; &lt;/hc:SimplePanel&gt;&lt;/hc:BlurWindow&gt; You can drag the form in the dark frame area IgnoreAltF4 Whether to ignore the shortcut keys Alt and F4Alt + F4 to close the window. 1&lt;Setter Property = "hc: WindowAttach.IgnoreAltF4" Value = "True" /&gt; ShowInTaskManager Whether to show the form to the task managerPrerequisites: -The window must be non-modal, that is, you cannot use ShowDialog to display the window.-The window must also set ShowInTaskBar tofalse ps: The effect of this additional property is not very obvious in Windows7]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Converter]]></title>
+    <url>%2Fhandycontrol%2Fbasic_xaml%2Fconverters%2Findex.html</url>
+    <content type="text"><![CDATA[Boolean2BooleanReConverterThis converter is used to invert Boolean types Boolean2StrConverterThe converter needs to provide a string as a parameter. The general form of the string is: [string0];[string1], when the value obtained by the converter is true, it will return [character String 0], otherwise return [string 1]. Boolean2VisibilityConverterThe converter will convert true to Visible, which will convert false to Collapse. Boolean2VisibilityReConverterThe converter case is the opposite of Boolean2VisibilityConverter. BooleanArr2VisibilityConverterThe converter will convert the Boolean array to Visibility, returning Visible when all the arrays are true, otherwise return Collapse. BorderCircularClipConverterThe converter is exclusive to the Border and accepts an array of objects of length 3, corresponding to the length, width and fillet radius of the Border, which returns a circular geometry as a Clip to trim the Border. BorderCircularConverterThe converter is exclusive to Border and accepts an array of objects of length 3, corresponding to the length, width and fillet radius of the Border. It returns a rounded rectangle as a Clip to trim the Border. BorderClipConverterThe converter is exclusive to the Border and accepts an array of objects of length 3, corresponding to the length, width and fillet radius of the Border, which returns a circular geometry as a Clip to trim the Border. ColLayoutConverterWhen the converter is used in xaml design, the main function is to convert the string to a valid ColLayout value. Color2ChannelAConverter (internal use)The converter will extract the value of the transparent channel (A) of SolidColorBrush.Color. CornerRadiusSplitConverterThe converter needs to provide a string as a parameter. The general form of the string is: [0/1], [0/1], [0/1], [0/1], 4 separated by commas The values correspond to Left, Top, Right, Bottom attributes of CornerRadius, and the value of 1 returns the value of the corresponding attribute, otherwise it returns 0. Color2HexStrConverterThe converter will convert SolidColorBrush to a hexadecimal string (with “#”). Double2GridLengthConverterThis converter will convert double values to GridLength. DoubleMinConverter (internal use)The converter can be provided with a string as the minimum value (if not provided, the minimum value defaults to 0). When the value passed in is less than the minimum value, the minimum value is returned, otherwise the value returned is returned. Int2StrConverterThe converter needs to provide a string as a parameter, the general form of the string is: [string 0]; [string 1];...[string n], the converter will be an integer The value is used as an index to get the string at the specified location and return. Long2FileSizeConverterThe converter converts long integers to a file-sized string. Number2PercentageConverterThe converter accepts a numeric array of length 2 and returns a percentage of the two numbers. Object2BooleanConverterReturns false if the converter gets a value of null, otherwise returns true. Object2VisibilityConverterReturns Collapsed if the value obtained by the converter is null, otherwise returns Visible. RectangleCircularConverterThe converter is Rectangle-specific and accepts an integer array of the length and width of the Rectangle, returning half of their minimum as the radius of the circular Rectangle. String2VisibilityConverterThe converter accepts a string and returns Collapse if the string is empty or null, otherwise returns Visible. String2VisibilityReConverterThe converter case is the opposite of String2VisibilityConverter. ThicknessSplitConverterThe converter needs to provide a string as a parameter. The general form of the string is: [0/1], [0/1], [0/1], [0/1], 4 separated by commas The values correspond to the Left, Top, Right, Bottom attributes of Thickness, and the value of 1 returns the value of the corresponding attribute, otherwise it returns 0. TreeViewItemMarginConverter (internal use)This converter is used to provide the appropriate left margin for the TreeViewItem. Color2HexStringConverterBoolean2StringConverterInt2StringConverterSpeedConverter Only Custom Version (Internal use)Positive2Nagative Only Custom Version (Internal use)Convert positive value to negative ValueToBrushConverter Only Custom Version (Internal use)Convert Value to Brush Example:1Visibility=&quot;&#123;Binding ShowButton,Converter=&#123;StaticResource Boolean2VisibilityConverter&#125;&#125;&quot;]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Effect]]></title>
+    <url>%2Fhandycontrol%2Fbasic_xaml%2Feffects%2Findex.html</url>
+    <content type="text"><![CDATA[ShadowCurrently only contains 5 levels of shadow effects: Name Radius EffectShadow1 5 EffectShadow2 8 EffectShadow3 14 EffectShadow4 25 EffectShadow5 35 Example：Effect=&quot;{StaticResource EffectShadow5}&quot;]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Font Size]]></title>
+    <url>%2Fhandycontrol%2Fbasic_xaml%2Ffonts%2Findex.html</url>
+    <content type="text"><![CDATA[Name Size Use LargeFontSize 24 Page Title HeadFontSize 20 Feature Title SubHeadFontSize 16 Subfunction Title TextFontSize 12 Text Example: FontSize=&quot;{StaticResource LargeFontSize}&quot;]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Geometric shape]]></title>
+    <url>%2Fhandycontrol%2Fbasic_xaml%2Fgeometries%2Findex.html</url>
+    <content type="text"><![CDATA[HandyControl comes with some geometric shape definitions, but it is obviously not enough to apply to production. We are not prepared to be all-encompassing. There is never a bottom, so we will do the opposite. It only contains the control library itself (of course users can also use it), and the rest should expand on its own. All shape definitions in the control library are listed in the following table: Name Description CalendarGeometry Calendar DeleteGeometry Delete DeleteFillCircleGeometry Delete (Circular Fill) CloseGeometry Close DownGeometry Next UpGeometry On ClockGeometry Clock LeftGeometry Left RightGeometry Right RotateLeftGeometry Rotate Left EnlargeGeometry Zoom ReduceGeometry Zoom out DownloadGeometry Download SaveGeometry Save WindowsGeometry Window FullScreenGeometry Full Screen FullScreenReturnGeometry Full Screen Back SearchGeometry Search UpDownGeometry Upper and lower combinations WindowMinGeometry Window Minimization WindowRestoreGeometry Window Restore WindowMaxGeometry Window Maximization AudioGeometry Sound BubbleTailGeometry Bubble Tail StarGeometry Love AddGeometry Add SubGeometry Subtract WarningGeometry Warning InfoGeometry Information ErrorGeometry Error SuccessGeometry Success FatalGeometry Critical AskGeometry Inquiry AllGeometry All DragGeometry Drag and Drop (for toolbars) CheckedGeometry Checkbox Checked EyeOpenGeometry PasswordBox Show Password EyeCloseGeometry PasswordBox Hide Password DropperGeometry Select Color from Shell VisualStudioGeometry Visual Studio Icon Example: Data=&quot;{StaticResource DragGeometry}&quot;]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Path]]></title>
+    <url>%2Fhandycontrol%2Fbasic_xaml%2Fpaths%2Findex.html</url>
+    <content type="text"><![CDATA[Like geometric shapes, we are not prepared to be all-inclusive. All paths in the control library are listed in the following table: Name Description PathBaseStyle Path Base Style SearchPathStyle Search FullScreenReturnPathStyle Full Screen Back FullScreenPathStyle Full Screen WindowsPathStyle Window SavePathStyle Save DownloadPathStyle Download EnlargePathStyle Zoom ReducePathStyle Zoom out RotatePathStyle Rotate Left (default) CalendarPathStyle Calendar DeletePathStyle Delete ClosePathStyle Close DownPathStyle Next ClockPathStyle Clock LeftPathStyle Left RightPathStyle Right UpDownPathStyle Upper and lower combinations Example: Style=&quot;{StaticResource SearchPathStyle}&quot;]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Size]]></title>
+    <url>%2Fhandycontrol%2Fbasic_xaml%2Fsizes%2Findex.html</url>
+    <content type="text"><![CDATA[Name Type Value Description DefaultControlHeight System.Double 30 Default Control Height DefaultControlPadding System.Windows.Thickness 10,6 Default Control Pitch DefaultInputPadding System.Windows.Thickness 8,6 Default input control padding DefaultCornerRadius System.Windows.CornerRadius 4 Default Fillet Example: CornerRadius=&quot;{StaticResource DefaultCornerRadius}&quot;]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[GrowlInfo]]></title>
+    <url>%2Fhandycontrol%2Fdata%2FGrowlInfo%2Findex.html</url>
+    <content type="text"><![CDATA[class Growl message initialization model Member Name Type Description Default Message string Notification content - ShowDateTime bool Whether to show notification time true Time int Waiting for automatic shutdown time 6 CancelStr string Cancel String Lang.Cancel ConfirmStr string Confirm String Lang.Confirm ActionBeforeClose Func&lt;bool, bool&gt; Delegate before closing - StaysOpen bool Keep open false IsCustom bool Whether to customize behavior false Type InfoType Message Type InfoType.Success Icon string Icon key name - IconBrush string Icon Paint Key Name - ShowCloseButton bool Whether to show the close button true Token string Message tag - GrowlParent bool set Growl Panel false FAQ What should I fill in Icon and IconBrush here? Icon must fill in the Key name of the resource type Geometry, for example, the following resource, its Key name GitterGeometry can be used as Icon:1&lt;Geometry x:Key="GitterGeometry"&gt;M260.8 645H160V0h100.8v645zM461.8 152.2h-100.8V1024h100.8V152.2z m201.2 0h-100.8V1024h100.8V152.2zM864 152h-100.8v494H864V152z&lt;/Geometry&gt; IconBrushKey must be filled with the Key name of the resource type Brush, such as the following resource, its Key name ToolBarBackground can be used as IconBrushKey: 1234&lt;LinearGradientBrush x:Key="ToolBarBackground" EndPoint="0.5,1" StartPoint="0.5,0"&gt; &lt;GradientStop Color="#F5F4F5" Offset="0"/&gt; &lt;GradientStop Color="#D1CFD1" Offset="1"/&gt;&lt;/LinearGradientBrush&gt;]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[InfoType]]></title>
+    <url>%2Fhandycontrol%2Fdata%2FInfoType%2Findex.html</url>
+    <content type="text"><![CDATA[enum(int) Message type Member Name Value Description Success 0 Success Info 1 Information Warning 2 Warning Error 3 Error Fatal 4 Serious Ask 5 Ask]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[建设中]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2FanimationPath%2Findex.html</url>
+    <content type="text"><![CDATA[建设中]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[建设中]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2Fbadge%2Findex.html</url>
+    <content type="text"><![CDATA[建设中]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[建设中]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2FblurWindow%2Findex.html</url>
+    <content type="text"><![CDATA[建设中]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[ButtonGroup]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2FbuttonGroup%2Findex.html</url>
+    <content type="text"><![CDATA[RadioGroupItemBaseStyleSubset RadioButton style base class in ButtonGroup control. It is not recommended to use it directly. It is often used as Item style base class in ButtonGroup. It is also used in conjunction with ButtonGroup control. Case: 12345678910111213&lt;!--The internal Item style is automatically attached by the ButtonGroup control-the default is the horizontal item style--&gt;&lt;hc:ButtonGroup Margin="0,32,0,0"&gt; &lt;RadioButton Content="RadioButton" IsChecked="True"/&gt; &lt;RadioButton Content="RadioButton"/&gt; &lt;RadioButton IsEnabled="False" Content="RadioButton"/&gt; &lt;RadioButton Content="RadioButton"/&gt;&lt;/hc:ButtonGroup&gt;&lt;hc:ButtonGroup Margin="0,16,0,0" Style="&#123;StaticResource ButtonGroupSolid&#125;"&gt; &lt;RadioButton Content="RadioButton"/&gt; &lt;RadioButton Content="RadioButton"/&gt; &lt;RadioButton IsEnabled="False" Content="RadioButton"/&gt; &lt;RadioButton Content="RadioButton" IsChecked="True"/&gt;&lt;/hc:ButtonGroup&gt; effect: RadioGroup association style Style Key use Base class style RadioGroupItemDefault RadioGroupItem default style RadioGroupItemBaseStyle RadioGroupItemHorizontalFirst RadioGroupItem horizontal head style (from left to right) RadioGroupItemBaseStyle RadioGroupItemHorizontalLast RadioGroupItem horizontal tail style (from left to right) RadioGroupItemBaseStyle RadioGroupItemSingle RadioGroupItem single item style RadioGroupItemBaseStyle RadioGroupItemVerticalFirst RadioGroupItem vertical header style (from top to bottom) RadioGroupItemBaseStyle RadioGroupItemVerticalLast RadioGroupItem vertical tail style (from top to bottom) RadioGroupItemBaseStyle Case: Single RadioButton style: 123&lt;RadioButton Style="&#123;DynamicResource RadioGroupItemSingle&#125;" Margin="0,16,8,0" Content="RadioGroupItemSingle"&gt;&lt;/RadioButton&gt; effect: Multiple RadioButton vertical styles: 1234567891011121314&lt;StackPanel Orientation="Horizontal" HorizontalAlignment="Center"&gt; &lt;hc:ButtonGroup Margin="0,16,8,0" Orientation="Vertical"&gt; &lt;RadioButton Content="RadioButton" IsChecked="True"/&gt; &lt;RadioButton Content="RadioButton"/&gt; &lt;RadioButton IsEnabled="False" Content="RadioButton"/&gt; &lt;RadioButton Content="RadioButton"/&gt; &lt;/hc:ButtonGroup&gt; &lt;hc:ButtonGroup Margin="8,16,0,0" Orientation="Vertical" Style="&#123;StaticResource ButtonGroupSolid&#125;"&gt; &lt;RadioButton Content="RadioButton"/&gt; &lt;RadioButton Content="RadioButton"/&gt; &lt;RadioButton IsEnabled="False" Content="RadioButton"/&gt; &lt;RadioButton Content="RadioButton" IsChecked="True"/&gt; &lt;/hc:ButtonGroup&gt;&lt;/StackPanel&gt; effect:]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[CalendarWithClock]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2FcalendarWithClock%2Findex.html</url>
+    <content type="text"><![CDATA[The CalendarWithClock control consists of a calendar and a clock, allowing the user to select the date and time with the mouse. 1234[TemplatePart(Name = ElementButtonConfirm, Type = typeof(Button))][TemplatePart(Name = ElementClockPresenter, Type = typeof(ContentPresenter))][TemplatePart(Name = ElementCalendarPresenter, Type = typeof(ContentPresenter))]public class CalendarWithClock : Control Create Date Picker1&lt;hc:CalendarWithClock /&gt; 1var dateTimePicker = new CalendarWithClock(); The generated CalendarWithClock is shown below: Select date and timeSelect the date and time on the calendar and clock with the mouse, and then click the OK button to update the date and time of the CalendarWithClock control. You can also set the date like this in a XAML clock or code. 1&lt;hc:CalendarWithClock SelectedDateTime="&#123;x:Static system:DateTime.Now&#125;"/&gt; 1calendarWithClock.SelectedDateTime = DateTime.Now; Attributes Properties Description SelectedDateTime Get or set the currently selected date and time DateTimeFormat Gets or sets the format used to display the selected date and time DisplayDateTime Get or set the date to be displayed ShowConfirmButton Gets or sets a value indicating whether to show OK button VerifyFunc Get or Set Data Validation Delegation IsError Get or set whether the data is wrong ErrorStr Get or Set Error Alert TextType Get or Set Text Type ShowClearButton Gets or sets whether to show the clear button Method Method Description VerifyData () Verify Data]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Card]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2Fcard%2Findex.html</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[建设中]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2Fcarousel%2Findex.html</url>
+    <content type="text"><![CDATA[建设中]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[建设中]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2FchatBubble%2Findex.html</url>
+    <content type="text"><![CDATA[建设中]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[建设中]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2FcirclePanel%2Findex.html</url>
+    <content type="text"><![CDATA[建设中]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[建设中]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2FcircleProgressBar%2Findex.html</url>
+    <content type="text"><![CDATA[建设中]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[建设中]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2Fclock%2Findex.html</url>
+    <content type="text"><![CDATA[建设中]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[建设中]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2FcolorPicker%2Findex.html</url>
+    <content type="text"><![CDATA[建设中]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[建设中]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2FcomboBox%2Findex.html</url>
+    <content type="text"><![CDATA[建设中]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[建设中]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2FcompareSlider%2Findex.html</url>
+    <content type="text"><![CDATA[建设中]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[建设中]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2FcoverFlow%2Findex.html</url>
+    <content type="text"><![CDATA[建设中]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[建设中]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2FcoverView%2Findex.html</url>
+    <content type="text"><![CDATA[建设中]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[DatePicker]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2FdatePicker%2Findex.html</url>
+    <content type="text"><![CDATA[The DatePicker control allows the user to select a date by typing the date in the text box or using the drop-down calendar control. 12[TemplatePart(Name = ElementTextBox, Type = typeof(DatePickerTextBox))]public class DatePicker : System.Windows.Controls.DatePicker, IDataInput Create DatePicker1&lt;hc:DatePicker /&gt; 1var datePicker = new DatePicker(); The generated DatePicker is shown below: Select dateYou can enter the date through the text box, or click the button to the right of the text box to open the drop-down calendar control to select the date. You can also set the date like this in a XAML clock or code. 1&lt;hc:DatePicker SelectedDate="&#123;x:Static system:DateTime.Now&#125;"/&gt; 1datePicker.SelectedDate = DateTime.Now; Set title and placeholder textYou can add Headers and Placeholders to the DatePicker to indicate to the user what they do. 1234&lt;hc:DatePicker hc:InfoElement.TitleWidth="140" hc:InfoElement.TitleAlignment="Left" hc:InfoElement.Placeholder="&#123;x:Static langs:Lang.PlsEnterContent&#125;" hc:InfoElement.Title="&#123;x:Static langs:Lang.TitleDemoStr3&#125;" /&gt; Attributes Properties Description SelectedDate Get or set the currently selected date VerifyFunc Get or Set Data Validation Delegation IsError Get or set whether the data is wrong ErrorStr Get or Set Error Alert TextType Get or Set Text Type ShowClearButton Gets or sets whether to show the clear button Method Method Description VerifyData () Verify Data]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[DateTimePicker]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2FdateTimePicker%2Findex.html</url>
+    <content type="text"><![CDATA[The DatePicker control allows users to select a date and time by typing the date and time in a text box, or using the drop-down calendar control. 12345[TemplatePart(Name = ElementRoot, Type = typeof(Grid))][TemplatePart(Name = ElementTextBox, Type = typeof(WatermarkTextBox))][TemplatePart(Name = ElementButton, Type = typeof(Button))][TemplatePart(Name = ElementPopup, Type = typeof(Popup))]public class DateTimePicker : Control, IDataInput Create DateTimePicker1&lt;hc:DateTimePicker /&gt; 1var dateTimePicker = new DateTimePicker(); The generated DateTimePicker is shown below: Select date and timeYou can enter the date and time through the text box, or click the button to the right of the text box to open the drop-down calendar and clock controls to select the date and time. You can also set the date like this in XAML or code. 1&lt;hc:DateTimePicker SelectedDateTime="&#123;x:Static system:DateTime.Now&#125;"/&gt; 1dateTimePicker.SelectedDateTime = DateTime.Now; Set title and placeholder textYou can add Headers and Placeholders to the DatePicker to indicate to the user what they do. To use these two properties, you first need to apply the DateTimePickerExtend or DateTimePickerPlus styles. 1234&lt;hc:DateTimePicker ShowClearButton="True" Style="&#123;StaticResource DateTimePickerExtend&#125;" hc:InfoElement.Title="&#123;x:Static langs:Lang.TitleDemoStr1&#125;" hc:InfoElement.Placeholder="&#123;x:Static langs:Lang.PlsEnterContent&#125;"/&gt; Attributes Properties Description SelectedDateTime Get or set the currently selected date and time DateTimeFormat Gets or sets the format used to display the selected date and time CalendarStyle Gets or sets the style used when rendering the calendar DisplayDateTime Get or set the date to be displayed IsDropDownOpen Gets or sets a value indicating whether the drop-down is on or off Calendar Text Get the text displayed by DateTimePicker, or set the selected date and time VerifyFunc Get or Set Data Validation Delegation IsError Get or set whether the data is wrong ErrorStr Get or Set Error Alert TextType Get or Set Text Type ShowClearButton Gets or sets whether to show the clear button Method Method Description VerifyData () Verify Data]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[建设中]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2Fdialog%2Findex.html</url>
+    <content type="text"><![CDATA[建设中]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Divider]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2Fdivider%2Findex.html</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[建设中]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2FflipClock%2Findex.html</url>
+    <content type="text"><![CDATA[建设中]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Drawer]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2Fdrawer%2Findex.html</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[FloatingBlock]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2FfloatingBlock%2Findex.html</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[建设中]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2FgifImage%2Findex.html</url>
+    <content type="text"><![CDATA[建设中]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[GlowWindow]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2FglowWindow%2Findex.html</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[建设中]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2FgotoTop%2Findex.html</url>
+    <content type="text"><![CDATA[建设中]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[建设中]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2Fgravatar%2Findex.html</url>
+    <content type="text"><![CDATA[建设中]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Grid]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2Fgrid%2Findex.html</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Growl Information notification]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2Fgrowl%2Findex.html</url>
+    <content type="text"><![CDATA[This control can be used when you want to arrange notification information from top to bottom in the right area of the window. Control effect Ready to workAdd a StackPanel container to the right side of the specified window123&lt;ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalAlignment="Right"&gt; &lt;StackPanel VerticalAlignment="Top" Margin="0,10,10,10"/&gt;&lt;/ScrollViewer&gt; In order to facilitate scrolling, a ScrollViewer is usually wrapped in the outer layer. At the same time, for the sake of beauty, we set VerticalScrollBarVisibility=&quot;Hidden&quot; of ScrollViewer. It is best to add a suitable Margin to StackPanel, which is also for aesthetics. Basic usageStep 1: Set StackPanel to the container of Growl 123&lt;ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalAlignment="Right"&gt; &lt;StackPanel controls:Growl.GrowlParent="True" VerticalAlignment="Top" Margin="0,10,10,10"/&gt;&lt;/ScrollViewer&gt; Note the code controls:Growl.GrowlParent=&quot;True&quot;。 Step 2: Call the relevant interface of Growl to display the specified message. Use case: Growl.Success(&quot;File saved successfully!&quot;); Display information notification only in the active windowRewrite OnActivated and OnDeactivated methods for windows that need to display information notifications, call Growl.SetGrowlParent(GrowlPanel, true); in OnActivated, call Growl.SetGrowlParent(GrowlPanel, false) inOnDeactivated` Where GrowlPanel is the information notification container, the type recommendation is StackPanel Need to explain here, a window corresponds to a StackPanel container, Growl internally maintains a variable to store this container, each time the notification is triggered, the instance of Growl will be inserted into the container, that is, each call Growl.SetGrowlParent(GrowlPanel, true);, GrowlPanel will become the internal variable. In this case, you don’t need to set controls:Growl.GrowlParent=&quot;True&quot; in xaml. Display information notifications in any StackPanel containerStep 1: Give the message to the StackPanel container: SuccessMsg123&lt;ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalAlignment="Right"&gt; &lt;StackPanel controls:Growl.Token="SuccessMsg" VerticalAlignment="Top" Margin="0,10,10,10"/&gt;&lt;/ScrollViewer&gt; Note the codecontrols:Growl.Token=&quot;SuccessMsg&quot;。 Step 2: Use the message tag: SuccessMsg and call the relevant interface of Growl to display the specified message. Example：Growl.Success(&quot;文件保存成功！&quot;, &quot;SuccessMsg&quot;); Now the “File saved successfully!” message will only be sent to the StackPanel container with the “SuccessMsg” message tag. Attributes Name Description GrowlPanel Currently used message container Additional attribute Name Description Token Used to set message tags GrowlParent for setting up message containers Method Name Description Success(string) Show a success notification Success(string, string) Display a success notification with the specified message tag Success(GrowlInfo) Use a full message initialization model to display a success notification Info(string) Show a message notification Info(string, string) Display a message notification with the specified message tag Info(GrowlInfo) Display a message notification with the full message initialization model Warning(string) Show a warning notification Warning(string, string) Display a warning notification with the specified message tag Warning(GrowlInfo) Display a warning notification with the full message initialization model Error(string) Show an error notification Error(string, string) Display an error notification with the specified message tag Error(GrowlInfo) Displaying an error notification with a full message initialization model Fatal(string) Show a critical notification Fatal(string, string) Display a serious notification with the specified message tag Fatal(GrowlInfo) Display a serious notification with the full message initialization model Ask(string, Func&lt;bool, bool&gt;) Show a notification Ask(string, Func&lt;bool, bool&gt;, string) Display a query notification with the specified message tag Ask(GrowlInfo) Use a full message initialization model to display a query notification Register(string, Panel) Register message tags for the specified container Unregister(string, Panel) Unregister the message tag for the specified container Unregister(Panel) Unregister if the container is registered with a message tag Clear( ) Clear messages in the currently used message container Clear(string) Clear the message in the message container with the specified message tag FAQ Ask is special, what? The main focus of the Ask method is the second parameter, its type is Func&lt;bool, bool&gt;, let’s look at the sample code:12345Growl.Ask(Properties.Langs.Lang.GrowlAsk, isConfirmed =&gt;&#123; Growl.Info(isConfirmed.ToString()); return true;&#125;); By using the Ask method, the “confirm” and “cancel” buttons are displayed by default. When you click “confirm”, the value of isConfirmed in the above code is true, and clicking “cancel” is false&quot;, which can be based onisConfirmed The value of takes the corresponding action. Finally, if you returntrue, the Growl notification will be closed, and iffalse` is returned, it will not be closed.]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[HoneycombPanel]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2FhoneycombPanel%2Findex.html</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[ImageBlock]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2FimageBlock%2Findex.html</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[建设中]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2FimageBrowser%2Findex.html</url>
+    <content type="text"><![CDATA[建设中]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[建设中]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2FimageViewer%2Findex.html</url>
+    <content type="text"><![CDATA[建设中]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Magnifier]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2Fmagnifier%2Findex.html</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[建设中]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2Floading%2Findex.html</url>
+    <content type="text"><![CDATA[建设中]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[建设中]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2FmessageBox%2Findex.html</url>
+    <content type="text"><![CDATA[建设中]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Notification]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2Fnotification%2Findex.html</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[建设中]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2FnotifyIcon%2Findex.html</url>
+    <content type="text"><![CDATA[建设中]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[NumericUpDown]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2FnumericUpDown%2Findex.html</url>
+    <content type="text"><![CDATA[The NumericUpDown control looks like a pair of arrow buttons and a TextBox that the user can click to adjust the value. The control displays and sets a value. The user can change the Value by clicking the up and down arrows, or by typing a number in the TextBox section of the control. 12[TemplatePart(Name = ElementTextBox, Type = typeof(DatePickerTextBox))]public class DatePicker : System.Windows.Controls.DatePicker, IDataInput Create NumericUpDown and set Value1&lt;hc:NumericUpDown Value="100"/&gt; 12var numericUpDown = new NumericUpDown();numericUpDown.Value = 100; The generated NumericUpDown is shown below: Setting DecimalPlacesIf you need to change the number of decimal places displayed by Value, you can change DecimalPlaces. DecimalPlaces is a int? Type, it does not limit the number of decimal places displayed when it is null, otherwise the displayed number of decimal places is the value of DecimalPlaces. 1&lt;hc:NumericUpDown DecimalPlaces="2" Value="100.12345"/&gt; 12numericUpDown.Value = 10.12345;numericUpDown.DecimalPlaces = 2; Setting IncrementYou can set the Increment to increase or decrease the number when you click the button. 1&lt;hc:NumericUpDown Value="100" Increment="10"/&gt; 1numericUpDown.Increment = 10; Set upper and lower limitsYou can set the upper and lower limits of the Value by setting the Maximum and Minimum. 1&lt;hc:NumericUpDown Maximum="500" Minimum="10"/&gt; 12numericUpDown.Minimum = 10;numericUpDown.Maximum = 1000; Set title and placeholder textYou can add Headers and Placeholders to NumericUpDown to indicate to users what they do. To use these two additional attributes, you need to apply the NumericUpDownPlus style first. 123&lt;hc:NumericUpDown hc:InfoElement.Placeholder="&#123;x:Static langs:Lang.PlsEnterContent&#125;" hc:InfoElement.Title="&#123;x:Static langs:Lang.TitleDemoStr1&#125;" Style="&#123;StaticResource NumericUpDownExtend&#125;" /&gt; Attributes Properties Description Value Get or set the current value Maximum Get or Set the Maximum Allowed Value Minimum Get or set the minimum allowable value Increment Gets or sets the value that the digital display box (also known as an up-down control) increments or decrements when the up or down button is clicked. DecimalPlaces Gets or sets the decimal digits to be displayed in NumericUpDown. This property does not affect the Value property. VerifyFunc Get or Set Data Validation Delegation IsError Get or set whether the data is wrong ErrorStr Get or Set Error Alert TextType Get or Set Text Type ShowClearButton Gets or sets whether to show the clear button Method Method Description VerifyData () Verify Data Event Event Description ValueChanged Occurs after the Value property has been changed in some way.]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[建设中]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2FoutlineText%2Findex.html</url>
+    <content type="text"><![CDATA[建设中]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[建设中]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2FpasswordBox%2Findex.html</url>
+    <content type="text"><![CDATA[建设中]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[建设中]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2Fpagination%2Findex.html</url>
+    <content type="text"><![CDATA[建设中]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[PinBox]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2FpinBox%2Findex.html</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[PopTip]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2FpopTip%2Findex.html</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[建设中]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2FpopupWindow%2Findex.html</url>
+    <content type="text"><![CDATA[建设中]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[建设中]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2FpreviewSlider%2Findex.html</url>
+    <content type="text"><![CDATA[建设中]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[建设中]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2FprogressButton%2Findex.html</url>
+    <content type="text"><![CDATA[建设中]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[建设中]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2FradioGroup%2Findex.html</url>
+    <content type="text"><![CDATA[建设中]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[RangeSlider]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2FrangeSlider%2Findex.html</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[RelativePanel]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2FrelativePanel%2Findex.html</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[建设中]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2Frate%2Findex.html</url>
+    <content type="text"><![CDATA[建设中]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[RunningBlock]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2FrunningBlock%2Findex.html</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[建设中]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2FsearchBar%2Findex.html</url>
+    <content type="text"><![CDATA[建设中]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[建设中]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2FscrollViewer%2Findex.html</url>
+    <content type="text"><![CDATA[建设中]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[建设中]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2Fshield%2Findex.html</url>
+    <content type="text"><![CDATA[建设中]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[SideMenu]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2FsideMenu%2Findex.html</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[建设中]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2FsimpleItemsControl%2Findex.html</url>
+    <content type="text"><![CDATA[建设中]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[建设中]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2FsimplePanel%2Findex.html</url>
+    <content type="text"><![CDATA[建设中]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[SplitButton]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2FsplitButton%2Findex.html</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Sprite]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2Fsprite%2Findex.html</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[建设中]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2FstepBar%2Findex.html</url>
+    <content type="text"><![CDATA[建设中]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[建设中]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2FtabControl%2Findex.html</url>
+    <content type="text"><![CDATA[建设中]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[建设中]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2Ftag%2Findex.html</url>
+    <content type="text"><![CDATA[建设中]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[建设中]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2FtextBox%2Findex.html</url>
+    <content type="text"><![CDATA[建设中]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[建设中]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2FtimeBar%2Findex.html</url>
+    <content type="text"><![CDATA[建设中]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[TimePicker]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2FtimePicker%2Findex.html</url>
+    <content type="text"><![CDATA[The TimePicker control allows the user to select the time by typing the time in the text box or using the drop-down calendar control. 12345[TemplatePart(Name = ElementRoot, Type = typeof(Grid))][TemplatePart(Name = ElementTextBox, Type = typeof(WatermarkTextBox))][TemplatePart(Name = ElementButton, Type = typeof(Button))][TemplatePart(Name = ElementPopup, Type = typeof(Popup))]public class TimePicker : Control, IDataInput Create TimePicker1&lt;hc:TimePicker /&gt; 1var timePicker = new TimePicker(); The generated TimePicker is shown below: Selection periodYou can enter the time through the text box, or click the button to the right of the text box to open the drop-down clock control to select the time. You can also set the date like this in a XAML clock or code. 1&lt;hc:TimePicker SelectedTime="&#123;x:Static system:DateTime.Now&#125;"/&gt; 1timePicker.SelectedTime = DateTime.Now; Change the clock styleBy changing the Clock property, TimePicker can change the style of the clock. 12345&lt;hc:TimePicker ShowClearButton="True" Style="&#123;StaticResource TimePickerPlus&#125;"&gt; &lt;hc:TimePicker.Clock&gt; &lt;hc:ListClock/&gt; &lt;/hc:TimePicker.Clock&gt;&lt;/hc:TimePicker&gt; Set title and placeholder textYou can add Headers and Placeholders to the DatePicker to indicate to the user what they do. To use these two properties, you first need to apply the TimePickerExtend or TimePickerPlus styles. 123&lt;hc:TimePicker hc:InfoElement.Placeholder="&#123;x:Static langs:Lang.PlsEnterContent&#125;" hc:InfoElement.Title="&#123;x:Static langs:Lang.TitleDemoStr2&#125;" Style="&#123;StaticResource TimePickerExtend&#125;"/&gt; Attributes Properties Description SelectedTime Get or set the currently selected time Clock Get or set the drop-down clock TimeFormat Get or set the format used to display the selected time DisplayTime Get or set the time to be displayed IsDropDownOpen Gets or sets a value that indicates whether the pull-down clock is turned on or off Text Get the text displayed by TimePicker or set the selected time VerifyFunc Get or Set Data Validation Delegation IsError Get or set whether the data is wrong ErrorStr Get or Set Error Alert TextType Get or Set Text Type ShowClearButton Gets or sets whether to show the clear button Method Method Description VerifyData () Verify Data]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[建设中]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2FtransitioningContentControl%2Findex.html</url>
+    <content type="text"><![CDATA[建设中]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[建设中]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2Ftransfer%2Findex.html</url>
+    <content type="text"><![CDATA[建设中]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[建设中]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2FwaveProgressBar%2Findex.html</url>
+    <content type="text"><![CDATA[建设中]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[建设中]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2FwaterfallPanel%2Findex.html</url>
+    <content type="text"><![CDATA[建设中]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Border]]></title>
+    <url>%2Fhandycontrol%2Fnative_controls%2Fborder%2Findex.html</url>
+    <content type="text"><![CDATA[BorderRegionStyleThis style is used to wrap a control area, with several DropShadowEffect resources in the base xaml definition to make the following effects: The xaml code for the above effects is as follows: 1234567891011121314151617181920212223242526272829303132&lt;UniformGrid Margin="32,32,0,0" Columns="3" Rows="2"&gt; &lt;Border Style="&#123;StaticResource BorderRegion&#125;" Width="200" Height="200" Margin="0,0,32,32"&gt; &lt;Border Background="&#123;DynamicResource PrimaryBrush&#125;"&gt; &lt;TextBlock Text="&#123;x:Static langs:Lang.ContentDemoStr&#125;" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"/&gt; &lt;/Border&gt; &lt;/Border&gt; &lt;Border Style="&#123;StaticResource BorderRegion&#125;" Width="200" Height="200" Margin="0,0,32,32" Effect="&#123;StaticResource EffectShadow1&#125;"&gt; &lt;Border Background="&#123;DynamicResource InfoBrush&#125;"&gt; &lt;TextBlock Text="&#123;x:Static langs:Lang.ContentDemoStr&#125;" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"/&gt; &lt;/Border&gt; &lt;/Border&gt; &lt;Border Style="&#123;StaticResource BorderRegion&#125;" Width="200" Height="200" Margin="0,0,32,32" Effect="&#123;StaticResource EffectShadow2&#125;"&gt; &lt;Border Background="&#123;DynamicResource WarningBrush&#125;"&gt; &lt;TextBlock Text="&#123;x:Static langs:Lang.ContentDemoStr&#125;" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"/&gt; &lt;/Border&gt; &lt;/Border&gt; &lt;Border Style="&#123;StaticResource BorderRegion&#125;" Width="200" Height="200" Margin="0,0,32,32" Effect="&#123;StaticResource EffectShadow3&#125;"&gt; &lt;Border Background="&#123;DynamicResource DangerBrush&#125;"&gt; &lt;TextBlock Text="&#123;x:Static langs:Lang.ContentDemoStr&#125;" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"/&gt; &lt;/Border&gt; &lt;/Border&gt; &lt;Border Style="&#123;StaticResource BorderRegion&#125;" Width="200" Height="200" Margin="0,0,32,32" Effect="&#123;StaticResource EffectShadow4&#125;"&gt; &lt;Border Background="&#123;DynamicResource AccentBrush&#125;"&gt; &lt;TextBlock Text="&#123;x:Static langs:Lang.ContentDemoStr&#125;" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"/&gt; &lt;/Border&gt; &lt;/Border&gt; &lt;Border Style="&#123;StaticResource BorderRegion&#125;" Width="200" Height="200" Margin="0,0,32,32" Effect="&#123;StaticResource EffectShadow5&#125;"&gt; &lt;Border Background="&#123;DynamicResource BorderBrush&#125;"&gt; &lt;TextBlock Text="&#123;x:Static langs:Lang.ContentDemoStr&#125;" VerticalAlignment="Center" HorizontalAlignment="Center"/&gt; &lt;/Border&gt; &lt;/Border&gt;&lt;/UniformGrid&gt; Tip: The BorderRegion used in the new version is different from the old version using the BorderRegionStyle. BorderVerticallySplitterThis style uses a 1 unit width Border to split the horizontally arranged controls. Example:1234567891011&lt;StackPanel Height=&quot;20&quot; Orientation=&quot;Horizontal&quot;&gt; &lt;Ellipse Margin=&quot;5,0&quot; Fill=&quot;OrangeRed&quot; Width=&quot;20&quot; Height=&quot;20&quot;/&gt; &lt;Border Style=&quot;&#123;StaticResource BorderVerticallySplitter&#125;&quot;/&gt; &lt;Ellipse Margin=&quot;5,0&quot; Fill=&quot;OrangeRed&quot; Width=&quot;20&quot; Height=&quot;20&quot;/&gt; &lt;Border Style=&quot;&#123;StaticResource BorderVerticallySplitter&#125;&quot;/&gt; &lt;Ellipse Margin=&quot;5,0&quot; Fill=&quot;OrangeRed&quot; Width=&quot;20&quot; Height=&quot;20&quot;/&gt; &lt;Border Style=&quot;&#123;StaticResource BorderVerticallySplitter&#125;&quot;/&gt; &lt;Ellipse Margin=&quot;5,0&quot; Fill=&quot;OrangeRed&quot; Width=&quot;20&quot; Height=&quot;20&quot;/&gt; &lt;Border Style=&quot;&#123;StaticResource BorderVerticallySplitter&#125;&quot;/&gt; &lt;Ellipse Margin=&quot;5,0&quot; Fill=&quot;OrangeRed&quot; Width=&quot;20&quot; Height=&quot;20&quot;/&gt;&lt;/StackPanel&gt; BorderHorizontallySplitterThis style uses a 1 unit height Border to split the vertically arranged controls. Example:1234567891011&lt;StackPanel Width=&quot;20&quot;&gt; &lt;Ellipse Margin=&quot;0,5&quot; Fill=&quot;OrangeRed&quot; Width=&quot;20&quot; Height=&quot;20&quot;/&gt; &lt;Border Style=&quot;&#123;StaticResource BorderHorizontallySplitter&#125;&quot;/&gt; &lt;Ellipse Margin=&quot;0,5&quot; Fill=&quot;OrangeRed&quot; Width=&quot;20&quot; Height=&quot;20&quot;/&gt; &lt;Border Style=&quot;&#123;StaticResource BorderHorizontallySplitter&#125;&quot;/&gt; &lt;Ellipse Margin=&quot;0,5&quot; Fill=&quot;OrangeRed&quot; Width=&quot;20&quot; Height=&quot;20&quot;/&gt; &lt;Border Style=&quot;&#123;StaticResource BorderHorizontallySplitter&#125;&quot;/&gt; &lt;Ellipse Margin=&quot;0,5&quot; Fill=&quot;OrangeRed&quot; Width=&quot;20&quot; Height=&quot;20&quot;/&gt; &lt;Border Style=&quot;&#123;StaticResource BorderHorizontallySplitter&#125;&quot;/&gt; &lt;Ellipse Margin=&quot;0,5&quot; Fill=&quot;OrangeRed&quot; Width=&quot;20&quot; Height=&quot;20&quot;/&gt;&lt;/StackPanel&gt; BorderCircularThis style implements a circular border with the addition of the BorderElement.Circular property. Example:1&lt;Border Style=&quot;&#123;StaticResource BorderCircular&#125;&quot; Background=&quot;OrangeRed&quot; Width=&quot;100&quot; Height=&quot;100&quot;/&gt; BorderClipThis style adds a cropping function to the ‘BorderCircular`, which is often used to display a circular Image. Example:123&lt;Border Style=&quot;&#123;StaticResource BorderClip&#125;&quot; Width=&quot;100&quot; Height=&quot;100&quot;&gt; &lt;Image Source=&quot;/HandyControlDemo;component/Resources/Img/Album/2.jpg&quot;/&gt;&lt;/Border&gt;]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[建设中]]></title>
+    <url>%2Fhandycontrol%2Fextend_controls%2Fwindow%2Findex.html</url>
+    <content type="text"><![CDATA[建设中]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Button]]></title>
+    <url>%2Fhandycontrol%2Fnative_controls%2Fbutton%2Findex.html</url>
+    <content type="text"><![CDATA[ButtonBaseStyle : ButtonBaseBaseStyleThe default style of the button is not recommended for direct use and should always be used by other styles in the BasedOn mode. All buttons that inherit this style can use the additional properties defined in IconElement to control the properties of the geometry in the button. All buttons that inherit this style can use the BorderElement.CornerRadius attached property to control the fillet size of the button. Example:123456&lt;StackPanel Orientation=&quot;Horizontal&quot;&gt; &lt;Button Content=&quot;This is a button&quot;/&gt; &lt;Button Content=&quot;This is a button&quot; Margin=&quot;10,0,0,0&quot; controls:BorderElement.CornerRadius=&quot;15&quot;/&gt; &lt;Button Content=&quot;This is a button&quot; Margin=&quot;10,0,0,0&quot;controls:IconElement.Geometry=&quot;&#123;StaticResource GithubGeometry&#125;&quot;/&gt;&lt;/StackPanel&gt; ButtonPrimary : ButtonBaseStyleMain Button Example:12345&lt;StackPanel Orientation=&quot;Horizontal&quot;&gt; &lt;Button Style=&quot;&#123;StaticResource ButtonPrimary&#125;&quot; Content=&quot;This is a button&quot;/&gt; &lt;Button Style=&quot;&#123;StaticResource ButtonPrimary&#125;&quot; Content=&quot;This is a button&quot; Margin=&quot;10,0,0,0&quot; controls:BorderElement.CornerRadius=&quot;15&quot;/&gt; &lt;Button Style=&quot;&#123;StaticResource ButtonPrimary&#125;&quot; Content=&quot;This is a button&quot; Margin=&quot;10,0,0,0&quot; controls:IconElement.Geometry=&quot;&#123;StaticResource GithubGeometry&#125;&quot;/&gt;&lt;/StackPanel&gt; ButtonSuccess : ButtonBaseStyleSuccess button Example：12345&lt;StackPanel Orientation=&quot;Horizontal&quot;&gt; &lt;Button Style=&quot;&#123;StaticResource ButtonSuccess&#125;&quot; Content=&quot;This is a button&quot;/&gt; &lt;Button Style=&quot;&#123;StaticResource ButtonSuccess&#125;&quot; Content=&quot;This is a button&quot; Margin=&quot;10,0,0,0&quot; controls:BorderElement.CornerRadius=&quot;15&quot;/&gt; &lt;Button Style=&quot;&#123;StaticResource ButtonSuccess&#125;&quot; Content=&quot;This is a button&quot; Margin=&quot;10,0,0,0&quot; controls:IconElement.Geometry=&quot;&#123;StaticResource GithubGeometry&#125;&quot;/&gt;&lt;/StackPanel&gt; ButtonInfo : ButtonBaseStyleInformation button Example：12345&lt;StackPanel Orientation=&quot;Horizontal&quot;&gt; &lt;Button Style=&quot;&#123;StaticResource ButtonInfo&#125;&quot; Content=&quot;This is a button&quot;/&gt; &lt;Button Style=&quot;&#123;StaticResource ButtonInfo&#125;&quot; Content=&quot;This is a button&quot; Margin=&quot;10,0,0,0&quot; controls:BorderElement.CornerRadius=&quot;15&quot;/&gt; &lt;Button Style=&quot;&#123;StaticResource ButtonInfo&#125;&quot; Content=&quot;This is a button&quot; Margin=&quot;10,0,0,0&quot; controls:IconElement.Geometry=&quot;&#123;StaticResource GithubGeometry&#125;&quot;/&gt;&lt;/StackPanel&gt; ButtonWarning : ButtonBaseStyleWarning button Example：12345&lt;StackPanel Orientation=&quot;Horizontal&quot;&gt; &lt;Button Style=&quot;&#123;StaticResource ButtonWarning&#125;&quot; Content=&quot;This is a button&quot;/&gt; &lt;Button Style=&quot;&#123;StaticResource ButtonWarning&#125;&quot; Content=&quot;This is a button&quot; Margin=&quot;10,0,0,0&quot; controls:BorderElement.CornerRadius=&quot;15&quot;/&gt; &lt;Button Style=&quot;&#123;StaticResource ButtonWarning&#125;&quot; Content=&quot;This is a button&quot; Margin=&quot;10,0,0,0&quot; controls:IconElement.Geometry=&quot;&#123;StaticResource GithubGeometry&#125;&quot;/&gt;&lt;/StackPanel&gt; ButtonDanger : ButtonBaseStyleDanger button Example：12345&lt;StackPanel Orientation=&quot;Horizontal&quot;&gt; &lt;Button Style=&quot;&#123;StaticResource ButtonDanger&#125;&quot; Content=&quot;This is a button&quot;/&gt; &lt;Button Style=&quot;&#123;StaticResource ButtonDanger&#125;&quot; Content=&quot;This is a button&quot; Margin=&quot;10,0,0,0&quot; controls:BorderElement.CornerRadius=&quot;15&quot;/&gt; &lt;Button Style=&quot;&#123;StaticResource ButtonDanger&#125;&quot; Content=&quot;This is a button&quot; Margin=&quot;10,0,0,0&quot; controls:IconElement.Geometry=&quot;&#123;StaticResource GithubGeometry&#125;&quot;/&gt;&lt;/StackPanel&gt; ButtonIcon : ButtonBaseStyleThis style is recommended if you only want to display the geometry button. Example：12345&lt;StackPanel Orientation=&quot;Horizontal&quot;&gt; &lt;Button Style=&quot;&#123;StaticResource ButtonIcon&#125;&quot; Foreground=&quot;Black&quot; controls:IconElement.Geometry=&quot;&#123;StaticResource UpDownGeometry&#125;&quot;/&gt; &lt;Button Style=&quot;&#123;StaticResource ButtonIcon&#125;&quot; Background=&quot;Black&quot; Foreground=&quot;White&quot; controls:BorderElement.CornerRadius=&quot;15&quot; controls:IconElement.Geometry=&quot;&#123;StaticResource UpDownGeometry&#125;&quot; Margin=&quot;10,0,0,0&quot;/&gt; &lt;Button Style=&quot;&#123;StaticResource ButtonIcon&#125;&quot; BorderThickness=&quot;1&quot; BorderBrush=&quot;Black&quot; Foreground=&quot;Black&quot; controls:IconElement.Geometry=&quot;&#123;StaticResource UpDownGeometry&#125;&quot; Margin=&quot;10,0,0,0&quot;/&gt;&lt;/StackPanel&gt; ButtonCustomThis style is recommended if you want to fully customize the content of the button. The content in ButtonCustom is entirely up to you. In addition, you can switch the background with additional properties in BackgroundSwitchElement: Example：1&lt;Button Height=&quot;30&quot; Padding=&quot;10,0&quot; Background=&quot;Black&quot; Foreground=&quot;White&quot; Content=&quot;This is a button&quot; Style=&quot;&#123;StaticResource ButtonCustom&#125;&quot; controls:BackgroundSwitchElement.MouseHoverBackground=&quot;Red&quot; controls:BackgroundSwitchElement.MouseDownBackground=&quot;PaleVioletRed&quot;/&gt;]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Calendar]]></title>
+    <url>%2Fhandycontrol%2Fnative_controls%2Fcalendar%2Findex.html</url>
+    <content type="text"><![CDATA[CalendarBaseStyleThe default style of the calendar is not recommended for direct use and should always be used by other styles in the BasedOn mode. Example：1&lt;Calendar/&gt;]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[CheckBox]]></title>
+    <url>%2Fhandycontrol%2Fnative_controls%2FcheckBox%2Findex.html</url>
+    <content type="text"><![CDATA[CheckBoxBaseStyleThe default style of the checkbox is not recommended for direct use and should always be used by other styles in the BasedOn mode. Example：12345678&lt;StackPanel&gt; &lt;CheckBox Content=&quot;CheckBox&quot; IsChecked=&quot;True&quot;/&gt; &lt;CheckBox Margin=&quot;0,16,0,0&quot; Content=&quot;CheckBox&quot; IsChecked=&quot;True&quot; IsEnabled=&quot;False&quot;/&gt; &lt;CheckBox Margin=&quot;0,16,0,0&quot; Content=&quot;CheckBox&quot;/&gt; &lt;CheckBox Margin=&quot;0,16,0,0&quot; Content=&quot;CheckBox&quot; IsEnabled=&quot;False&quot;/&gt; &lt;CheckBox Margin=&quot;0,16,0,0&quot; Content=&quot;CheckBox&quot; IsChecked=&quot;&#123;x:Null&#125;&quot;/&gt; &lt;CheckBox Margin=&quot;0,16,0,0&quot; Content=&quot;CheckBox&quot; IsChecked=&quot;&#123;x:Null&#125;&quot; IsEnabled=&quot;False&quot;/&gt;&lt;/StackPanel&gt;]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[ComboBox]]></title>
+    <url>%2Fhandycontrol%2Fnative_controls%2FcomboBox%2Findex.html</url>
+    <content type="text"><![CDATA[ComboBoxBaseStyleThe default style of the original combo box is not recommended for direct use. It should always be used by other styles in the BasedOn method. Native combo box uses this style by default if no style is set: Default style&lt;ComboBox ItemsSource=&quot;{Binding DataList}&quot; SelectedIndex=&quot;0&quot;/&gt; ComboBoxExtendBaseStyle : ComboBoxBaseStyleThe native combo box extends the default style and is not recommended for direct use. It should always be used by other styles in the BasedOn method. ComboBoxExtend : ComboBoxExtendBaseStyleRelative to the default style of the original combo box, it can implement the function of title and watermark by means of additional attributes. Heading on&lt;ComboBox ItemsSource=&quot;{Binding DataList}&quot; SelectedIndex=&quot;0&quot; hc:InfoElement.Title=&quot;This is the title&quot; Style=&quot;{StaticResource ComboBoxExtend}&quot; Text=&quot;Body 1&quot;/&gt; Heading left&lt;ComboBox ItemsSource=&quot;{Binding DataList}&quot; Width=&quot;380&quot; hc:InfoElement.TitleWidth=&quot;140&quot; hc:InfoElement.TitleAlignment=&quot;Left&quot; hc:InfoElement.Title=&quot;Heading on the left&quot; Style=&quot;{StaticResource ComboBoxExtend}&quot; Text=&quot;Body 1&quot;/&gt; When the title is on the left, in order to align the left side of multiple input boxes, you need to set the title width. The title width does not need to be set one by one, and can be set uniformly on the external container. common problem:The font of Combobox is larger than the original default font, and the title is set to the left, and the title is incomplete due to the font size.solution:Add the additional attribute hc:InfoElement.ContentHeight to the Combobox. The default value is 30. The default font number is 12. After the change, the value of the additional attribute can be set according to the new font size. As shown above, the font size is 18. Then set hc:InfoElement.ContentHeight to 38 and the result is as follows: Heading on, with watermark&lt;ComboBox ItemsSource=&quot;{Binding DataList}&quot; hc:InfoElement.Placeholder=&quot;Please enter the content&quot; hc:InfoElement.Title=&quot;This field is required&quot; Style=&quot;{StaticResource ComboBoxExtend}&quot;/&gt; Title is on, with watermark, and is required&lt;ComboBox ItemsSource=&quot;{Binding DataList}&quot; hc:InfoElement.Placeholder=&quot;Please enter the content&quot; hc:InfoElement.Title=&quot;This field is required&quot; Style=&quot;{StaticResource ComboBoxExtend}&quot; hc:InfoElement.Necessary=&quot;True&quot;/&gt; The title is on, with a watermark, and is required, and a custom required prompt&lt;ComboBox ItemsSource=&quot;{Binding DataList}&quot; hc:InfoElement.Placeholder=&quot;Please enter the content&quot; hc:InfoElement.Title=&quot;This field is required&quot; Style=&quot;{StaticResource ComboBoxExtend}&quot; hc:InfoElement.Necessary=&quot;True&quot; hc:InfoElement.Symbol=&quot;*&quot;/&gt;]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[ContextMenu]]></title>
+    <url>%2Fhandycontrol%2Fnative_controls%2FcontextMenu%2Findex.html</url>
+    <content type="text"><![CDATA[ContextMenuBaseStyleThe default style of the context menu is not recommended for direct use and should always be used by other styles in the BasedOn mode. Example：1234567&lt;ContextMenu ItemsSource=&quot;&#123;Binding DataList&#125;&quot;&gt; &lt;ContextMenu.ItemTemplate&gt; &lt;HierarchicalDataTemplate ItemsSource=&quot;&#123;Binding DataList&#125;&quot;&gt; &lt;TextBlock Text=&quot;&#123;Binding Name&#125;&quot;/&gt; &lt;/HierarchicalDataTemplate&gt; &lt;/ContextMenu.ItemTemplate&gt;&lt;/ContextMenu&gt;]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[ContentControl]]></title>
+    <url>%2Fhandycontrol%2Fnative_controls%2FcontentControl%2Findex.html</url>
+    <content type="text"><![CDATA[All ContentControl cannot get focus by default]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[DatePicker]]></title>
+    <url>%2Fhandycontrol%2Fnative_controls%2FdatePicker%2Findex.html</url>
+    <content type="text"><![CDATA[DatePickerBaseStyleNative date picker default style, not recommended for direct use, should always be used by other styles in the BasedOn mode. The native date picker uses this style by default if no style is set: Default style&lt;DatePicker SelectedDate=&quot;{x:Static system:DateTime.Now}&quot;/&gt; DatePickerExtendBaseStyle : DatePickerBaseStyleThe native date picker extends the default style and is not recommended for direct use. It should always be used by other styles in the BasedOn mode. DatePickerExtend : DatePickerExtendBaseStyle Heading on&lt;DatePicker SelectedDate=&quot;{x:Static system:DateTime.Now}&quot; Style=&quot;{StaticResource DatePickerExtend}&quot; hc:InfoElement.Title=&quot;This is the title&quot;/&gt; Heading left&lt;DatePicker SelectedDate=&quot;{x:Static system:DateTime.Now}&quot; Width=&quot;380&quot; hc:InfoElement.TitleWidth=&quot;140&quot; hc:InfoElement.TitleAlignment=&quot;Left&quot; Style=&quot;{StaticResource DatePickerExtend}&quot; hc:InfoElement.Title=&quot;Heading on the left&quot;/&gt; When the title is on the left, in order to align the left side of multiple input boxes, you need to set the title width. The title width does not need to be set one by one, and can be set uniformly on the external container. Heading on, with watermarkSee Combobox Title is on, with watermark, and is requiredSee Combobox The title is on, with a watermark, and is required, and a custom required promptSee Combobox]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[DataGrid]]></title>
+    <url>%2Fhandycontrol%2Fnative_controls%2FdataGrid%2Findex.html</url>
+    <content type="text"><![CDATA[Style Name Type Description RowHeaderGripperStyle Thumb Row Header Drag Strip Style ColumnHeaderGripperStyle Thumb Column Header Drag Style DataGridCellStyle DataGridCell Cell Style DataGridRowStyle DataGridRow Line Style DataGridColumnHeaderStyle DataGridColumnHeader Column Header Style DataGridRowHeaderStyle DataGridRowHeader Row Header Style TextBlockComboBoxStyle ComboBox ComboBox Non-Edit Mode Style DataGridTextColumnStyle TextBlock Default Text Style Example：123456789101112131415161718192021&lt;DataGrid HeadersVisibility=&quot;All&quot; RowHeaderWidth=&quot;60&quot; AutoGenerateColumns=&quot;False&quot; ItemsSource=&quot;&#123;Binding DataList&#125;&quot;&gt; &lt;DataGrid.RowHeaderTemplate&gt; &lt;DataTemplate&gt; &lt;CheckBox IsChecked=&quot;&#123;Binding IsSelected,RelativeSource=&#123;RelativeSource AncestorType=DataGridRow&#125;&#125;&quot;/&gt; &lt;/DataTemplate&gt; &lt;/DataGrid.RowHeaderTemplate&gt; &lt;DataGrid.Columns&gt; &lt;DataGridTextColumn IsReadOnly=&quot;True&quot; Width=&quot;80&quot; CanUserResize=&quot;False&quot; Binding=&quot;&#123;Binding Index&#125;&quot; Header=&quot;&#123;x:Static langs:Lang.Index&#125;&quot;/&gt; &lt;DataGridTemplateColumn Width=&quot;60&quot; CanUserResize=&quot;False&quot;&gt; &lt;DataGridTemplateColumn.CellTemplate&gt; &lt;DataTemplate&gt; &lt;Image Source=&quot;&#123;Binding ImgPath&#125;&quot; Width=&quot;32&quot; Height=&quot;32&quot; Stretch=&quot;Uniform&quot;/&gt; &lt;/DataTemplate&gt; &lt;/DataGridTemplateColumn.CellTemplate&gt; &lt;/DataGridTemplateColumn&gt; &lt;DataGridTextColumn Width=&quot;1&quot; Binding=&quot;&#123;Binding Name&#125;&quot; Header=&quot;&#123;x:Static langs:Lang.Name&#125;&quot;/&gt; &lt;DataGridCheckBoxColumn Width=&quot;100&quot; CanUserResize=&quot;False&quot; Binding=&quot;&#123;Binding IsSelected&#125;&quot; Header=&quot;&#123;x:Static langs:Lang.Selected&#125;&quot;/&gt; &lt;DataGridComboBoxColumn ItemsSource=&quot;&#123;Binding Source=&#123;StaticResource DemoTypes&#125;&#125;&quot; Width=&quot;100&quot; CanUserResize=&quot;False&quot; SelectedValueBinding=&quot;&#123;Binding Type&#125;&quot; Header=&quot;&#123;x:Static langs:Lang.Type&#125;&quot;/&gt; &lt;DataGridTextColumn Width=&quot;1&quot; Binding=&quot;&#123;Binding Remark&#125;&quot; Header=&quot;&#123;x:Static langs:Lang.Remark&#125;&quot;/&gt; &lt;/DataGrid.Columns&gt;&lt;/DataGrid&gt; FAQ For the text display column DataGridTextColumn, you need to set the text content horizontal centered or horizontal right&#39;, instead of the default style set in HandyControl asleft left, you need to inherit theDataGridCellStyleoverrideHorizontalContentAlignmentattribute. ForCenterorRight`, it should be noted that this method is only applicable to projects that have introduced the HandControl resource style. This is not valid for normal native DataGrids. Use for example: 123456789101112131415style:&lt;Style x:Key=&quot;DataGridTextCenterColumnStyle&quot; TargetType=&quot;DataGridCell&quot; BasedOn=&quot;&#123;StaticResource DataGridCellStyle&#125;&quot;&gt; &lt;Setter Property=&quot;HorizontalContentAlignment&quot; Value=&quot;Center&quot;/&gt;&lt;/Style&gt;Use in xaml:&lt;DataGrid ItemsSource=&quot;&#123;Binding Datas&#125;&quot; AutoGenerateColumns=&quot;False&quot;&gt; &lt;DataGrid.Columns&gt; &lt;DataGridTextColumn Header=&quot;Left&quot; Binding=&quot;&#123;Binding Name&#125;&quot; Width=&quot;*&quot;/&gt; &lt;DataGridTextColumn Header=&quot;Centered&quot; CellStyle=&quot;&#123;StaticResource DataGridTextCenterColumnStyle&#125;&quot; Width=&quot;*&quot; Binding=&quot;&#123;Binding Name&#125;&quot;/&gt;​ &lt;/DataGrid.Columns&gt;&lt;/DataGrid&gt; The effect is as follows:]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[FlowDocument]]></title>
+    <url>%2Fhandycontrol%2Fnative_controls%2FflowDocument%2Findex.html</url>
+    <content type="text"><![CDATA[FlowDocumentScrollViewerBaseStyleThe default style of the scrolling view of the stream document is not recommended. It should always be used by other styles as the BaseOn method. Case: 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293&lt;FlowDocumentScrollViewer IsToolBarVisible="True" Width="502" Height="400" Margin="32"&gt; &lt;FlowDocument ColumnWidth="400" IsOptimalParagraphEnabled="True" IsHyphenationEnabled="True"&gt; &lt;Section FontSize="12"&gt; &lt;Paragraph&gt; &lt;Bold&gt;Neptune&lt;/Bold&gt; (planet), major planet in the solar system, eighth planet from the Sun and fourth largest in diameter. Neptune maintains an almost constant distance, about 4,490 million km (about 2,790 million mi), from the Sun. Neptune revolves outside the orbit of Uranus and for most of its orbit moves inside the elliptical path of the outermost planet Pluto (see Solar System). Every 248 years, Pluto’s elliptical orbit brings the planet inside Neptune’s nearly circular orbit for about 20 years, temporarily making Neptune the farthest planet from the Sun. The last time Pluto’s orbit brought it inside Neptune’s orbit was in 1979. In 1999 Pluto’s orbit carried it back outside Neptune’s orbit. &lt;Figure Width="140" Height="50" Background="GhostWhite" HorizontalAnchor="PageLeft" HorizontalOffset="100" VerticalOffset="20"&gt; &lt;Paragraph FontStyle="Italic" TextAlignment="Left" Background="Beige" Foreground="DarkGreen"&gt; Neptune has 72 times Earth's volume... &lt;/Paragraph&gt; &lt;/Figure&gt; &lt;Floater Background="GhostWhite" Width="285" HorizontalAlignment="Left"&gt; &lt;Table CellSpacing="5"&gt; &lt;Table.Columns&gt; &lt;TableColumn Width="155"/&gt; &lt;TableColumn Width="130"/&gt; &lt;/Table.Columns&gt; &lt;TableRowGroup&gt; &lt;TableRow&gt; &lt;TableCell ColumnSpan="3"&gt; &lt;Paragraph&gt;Neptune Stats&lt;/Paragraph&gt; &lt;/TableCell&gt; &lt;/TableRow&gt; &lt;TableRow Background="LightGoldenrodYellow" FontSize="12"&gt; &lt;TableCell&gt; &lt;Paragraph FontWeight="Bold"&gt;Mean Distance from Sun&lt;/Paragraph&gt; &lt;/TableCell&gt; &lt;TableCell&gt; &lt;Paragraph&gt;4,504,000,000 km&lt;/Paragraph&gt; &lt;/TableCell&gt; &lt;/TableRow&gt; &lt;TableRow FontSize="12" Background="LightGray"&gt; &lt;TableCell&gt; &lt;Paragraph FontWeight="Bold"&gt;Mean Diameter&lt;/Paragraph&gt; &lt;/TableCell&gt; &lt;TableCell&gt; &lt;Paragraph&gt;49,532 km&lt;/Paragraph&gt; &lt;/TableCell&gt; &lt;/TableRow&gt; &lt;TableRow Background="LightGoldenrodYellow" FontSize="12"&gt; &lt;TableCell&gt; &lt;Paragraph FontWeight="Bold"&gt;Approximate Mass&lt;/Paragraph&gt; &lt;/TableCell&gt; &lt;TableCell&gt; &lt;Paragraph&gt;1.0247e26 kg&lt;/Paragraph&gt; &lt;/TableCell&gt; &lt;/TableRow&gt; &lt;TableRow&gt; &lt;TableCell ColumnSpan="4"&gt; &lt;Paragraph FontSize="10" FontStyle="Italic"&gt; Information from the &lt;Hyperlink NavigateUri="http://encarta.msn.com/encnet/refpages/artcenter.aspx"&gt;Encarta&lt;/Hyperlink&gt; web site. &lt;/Paragraph&gt; &lt;/TableCell&gt; &lt;/TableRow&gt; &lt;/TableRowGroup&gt; &lt;/Table&gt; &lt;/Floater&gt; &lt;/Paragraph&gt; &lt;Paragraph&gt; Astronomers believe Neptune has an inner rocky core that is surrounded by a vast ocean of water mixed with rocky material. From the inner core, this ocean extends upward until it meets a gaseous atmosphere of hydrogen, helium, and trace amounts of methane. Neptune has four rings and 11 known moons. Even though Neptune's volume is 72 times Earth’s volume, its mass is only 17.15 times Earth’s mass. Because of its size, scientists classify Neptune—along with Jupiter, Saturn, and Uranus—as one of the giant or Jovian planets (so-called because they resemble Jupiter). &lt;/Paragraph&gt; &lt;Paragraph&gt; &lt;Figure Width="140" Height="50" Background="GhostWhite" TextAlignment="Left" HorizontalAnchor="PageCenter" WrapDirection="Both"&gt; &lt;Paragraph FontStyle="Italic" Background="Beige" Foreground="DarkGreen" &gt; Neptune has an orbital period of ~20 years... &lt;/Paragraph&gt; &lt;/Figure&gt; Mathematical theories of astronomy led to the discovery of Neptune. To account for wobbles in the orbit of the planet Uranus, British astronomer John Couch Adams and French astronomer Urbain Jean Joseph Leverrier independently calculated the existence and position of a new planet in 1845 and 1846, respectively. They theorized that the gravitational attraction of this planet for Uranus was causing the wobbles in Uranus’s orbit. Using information from Leverrier, German astronomer Johann Gottfried Galle first observed the planet in 1846. &lt;/Paragraph&gt; &lt;/Section&gt; &lt;/FlowDocument&gt; &lt;/FlowDocumentScrollViewer&gt; effect: FlowDocumentPageViewerBaseStyleThe default style of the single page view of the stream document is not recommended. It should always be used by other styles as the BaseOn method. FlowDocumentReaderBaseStyleThe default style of the Streaming Document Viewer is not recommended. It should always be used by other styles as BasedOn.]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Expander]]></title>
+    <url>%2Fhandycontrol%2Fnative_controls%2Fexpander%2Findex.html</url>
+    <content type="text"><![CDATA[ExpanderBaseStyleExpander Expand Box The default style, which is not recommended for direct use, should always be used by other styles in the BasedOn method. Example:1234567891011121314&lt;StackPanel Margin=&quot;32&quot; VerticalAlignment=&quot;Center&quot; Width=&quot;240&quot;&gt; &lt;Expander Header=&quot;&#123;x:Static langs:Lang.Title&#125;&quot; BorderThickness=&quot;1,1,1,0&quot; BorderBrush=&quot;&#123;DynamicResource BorderBrush&#125;&quot;&gt; &lt;Border Height=&quot;100&quot; Background=&quot;&#123;DynamicResource SecondaryRegionBrush&#125;&quot;/&gt; &lt;/Expander&gt; &lt;Expander Header=&quot;&#123;x:Static langs:Lang.Title&#125;&quot; BorderThickness=&quot;1,1,1,0&quot; BorderBrush=&quot;&#123;DynamicResource BorderBrush&#125;&quot;&gt; &lt;Border Height=&quot;100&quot; Background=&quot;&#123;DynamicResource SecondaryRegionBrush&#125;&quot;/&gt; &lt;/Expander&gt; &lt;Expander Header=&quot;&#123;x:Static langs:Lang.Title&#125;&quot; BorderThickness=&quot;1,1,1,0&quot; BorderBrush=&quot;&#123;DynamicResource BorderBrush&#125;&quot;&gt; &lt;Border Height=&quot;100&quot; Background=&quot;&#123;DynamicResource SecondaryRegionBrush&#125;&quot;/&gt; &lt;/Expander&gt; &lt;Expander Header=&quot;&#123;x:Static langs:Lang.Title&#125;&quot; BorderThickness=&quot;1&quot; BorderBrush=&quot;&#123;DynamicResource BorderBrush&#125;&quot;&gt; &lt;Border Height=&quot;100&quot; Background=&quot;&#123;DynamicResource SecondaryRegionBrush&#125;&quot;/&gt; &lt;/Expander&gt;&lt;/StackPanel&gt;]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[GroupBox]]></title>
+    <url>%2Fhandycontrol%2Fnative_controls%2FgroupBox%2Findex.html</url>
+    <content type="text"><![CDATA[GroupBoxBaseStyleGroupBox The default style of the GroupBox. It is not recommended to use it directly, and it should always be used by other styles as BasedOn. Example:1234567 &lt;GroupBox Grid.Row = &quot;0&quot; Grid.Column = &quot;0&quot; Width = &quot;300&quot; Height = &quot;200&quot; Header = &quot;&#123;x: Static langs: Lang.TitleDemoStr1&#125;&quot; Padding = &quot;10&quot; Margin = &quot;16&quot;&gt; &lt;Border Background = &quot;&#123;DynamicResource PrimaryBrush&#125;&quot; CornerRadius = &quot;4&quot;&gt; &lt;TextBlock Text = &quot;&#123;x: Static langs: Lang.ContentDemoStr&#125;&quot; VerticalAlignment = &quot;Center&quot; HorizontalAlignment = &quot;Center&quot; Foreground = &quot;White&quot; /&gt; &lt;/ Border&gt; &lt;/ GroupBox&gt; Here is another style for developers to choose Just add extended attributes1hc:TitleElement.TitleAlignment=&quot;Left&quot;Example:1234567&lt;GroupBox Grid.Row=&quot;0&quot; Grid.Column=&quot;1&quot; Width=&quot;300&quot; Height=&quot;200&quot; Header=&quot;&#123;x:Static langs:Lang.TitleDemoStr1&#125;&quot; Padding=&quot;10&quot; Margin=&quot;16&quot; hc:TitleElement.TitleAlignment=&quot;Left&quot;&gt; &lt;Border Background=&quot;&#123;DynamicResource PrimaryBrush&#125;&quot; CornerRadius=&quot;4&quot;&gt; &lt;TextBlock Text=&quot;&#123;x:Static langs:Lang.ContentDemoStr&#125;&quot; VerticalAlignment=&quot;Center&quot; HorizontalAlignment=&quot;Center&quot; Foreground=&quot;White&quot;/&gt; &lt;/Border&gt;&lt;/GroupBox&gt; GroupBoxTab : GroupBoxTabBaseStyle : GroupBoxBaseStyleAnother style of GroupBox GroupBox GroupBoxTabBaseStyle is not recommended to be used directly, and should always be used by other styles as BasedOn. Example:1234567&lt;GroupBox Grid.Row=&quot;1&quot; Grid.Column=&quot;0&quot; Width=&quot;300&quot; Height=&quot;200&quot; Header=&quot;&#123;x:Static langs:Lang.TitleDemoStr1&#125;&quot; Padding=&quot;10&quot; Margin=&quot;16&quot; Style=&quot;&#123;StaticResource GroupBoxTab&#125;&quot;&gt; &lt;Border Background=&quot;&#123;DynamicResource PrimaryBrush&#125;&quot; CornerRadius=&quot;4&quot;&gt; &lt;TextBlock Text=&quot;&#123;x:Static langs:Lang.ContentDemoStr&#125;&quot; VerticalAlignment=&quot;Center&quot; HorizontalAlignment=&quot;Center&quot; Foreground=&quot;White&quot;/&gt; &lt;/Border&gt;&lt;/GroupBox&gt;You can also use extended attributes 1hc:TitleElement.TitleAlignment=&quot;Left&quot; GroupBoxOriginal : GroupBoxOriginalBaseStyle : GroupBoxBaseStyleAnother style of GroupBox GroupBox GroupBoxOriginalBaseStyle is not recommended to be used directly, it should always be used by other styles in the way of BasedOn. example:123456789&lt;GroupBox Grid.Row=&quot;2&quot; Grid.Column=&quot;0&quot; Width=&quot;300&quot; Header=&quot;&#123;x:Static langs:Lang.TitleDemoStr1&#125;&quot; Margin=&quot;16&quot; Style=&quot;&#123;StaticResource GroupBoxOriginal&#125;&quot; HorizontalContentAlignment=&quot;Left&quot;&gt; &lt;TextBox/&gt;&lt;/GroupBox&gt;&lt;GroupBox Grid.Row=&quot;2&quot; VerticalAlignment=&quot;Bottom&quot; Grid.Column=&quot;1&quot; Width=&quot;300&quot; hc:TitleElement.TitleWidth=&quot;100&quot; Header=&quot;&#123;x:Static langs:Lang.TitleDemoStr1&#125;&quot; Margin=&quot;16&quot; Style=&quot;&#123;StaticResource GroupBoxOriginal&#125;&quot; HorizontalContentAlignment=&quot;Left&quot; hc:TitleElement.TitleAlignment=&quot;Left&quot;&gt; &lt;ComboBox DataContext=&quot;&#123;Binding ComboBoxDemo,Source=&#123;StaticResource Locator&#125;&#125;&quot; ItemsSource=&quot;&#123;Binding DataList&#125;&quot;/&gt;&lt;/GroupBox&gt;]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Lable]]></title>
+    <url>%2Fhandycontrol%2Fnative_controls%2Flabel%2Findex.html</url>
+    <content type="text"><![CDATA[LabelBaseStyleThe default style of the Label label is not recommended. It should always be used by other styles based on On. Example：1&lt;Label Content=&quot;Label default style&quot; Margin=&quot;10&quot;&gt;&lt;/Label&gt; LabelPrimary : LabelBaseStyleMaster style: Example：1&lt;Label Content=&quot;LabelPrimary style&quot; Margin=&quot;10&quot; Style=&quot;&#123;DynamicResource LabelPrimary&#125;&quot;&gt;&lt;/Label&gt; LabelSuccess : LabelBaseStyleSuccess type style Example：1&lt;Label Content=&quot;LabelSuccess style&quot; Margin=&quot;10&quot; Style=&quot;&#123;DynamicResource LabelSuccess&#125;&quot;&gt;&lt;/Label&gt; LabelInfo : LabelBaseStyleInformation type style Example：1&lt;Label Content=&quot;LabelInfo style&quot; Margin=&quot;10&quot; Style=&quot;&#123;DynamicResource LabelInfo&#125;&quot;&gt;&lt;/Label&gt; LabelWarning : LabelBaseStyleWarning type style Example：1&lt;Label Content=&quot;LabelWarning style&quot; Margin=&quot;10&quot; Style=&quot;&#123;DynamicResource LabelWarning&#125;&quot;&gt;&lt;/Label&gt; LabelDanger : LabelBaseStyleDanger type style Example：1&lt;Label Content=&quot;LabelDanger style&quot; Margin=&quot;10&quot; Style=&quot;&#123;DynamicResource LabelDanger&#125;&quot;&gt;&lt;/Label&gt;]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Image]]></title>
+    <url>%2Fhandycontrol%2Fnative_controls%2Fimage%2Findex.html</url>
+    <content type="text"><![CDATA[In HandyControl, corresponding to the nativeImage control, only a default control style is provided, and no special style is provided. For personalized customization, users need to customize it themselves Example:1234&lt;StackPanel Background=&quot;LightGray&quot;&gt; &lt;Image Source=&quot;Resources/Images/Image_basestyle.png&quot; Margin=&quot;0,10&quot;&gt;&lt;/Image&gt; &lt;Image Source=&quot;Resources/Images/Image_basestyle.png&quot; RenderOptions.BitmapScalingMode=&quot;HighQuality&quot; Stretch=&quot;Uniform&quot;&gt;&lt;/Image&gt;&lt;/StackPanel&gt;]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[ListBox]]></title>
+    <url>%2Fhandycontrol%2Fnative_controls%2FlistBox%2Findex.html</url>
+    <content type="text"><![CDATA[ListBoxBaseStyle ListBox default style is not recommended to use directly, it should always be used by other styles in BasedOn mode. Example：1 &lt;Style BasedOn = &quot;&#123;StaticResource ListBoxBaseStyle&#125;&quot; TargetType = &quot;ListBox&quot; /&gt; ListBoxCustom : ListBoxBaseStyleListBox List Custom style, which retains the basic attribute style of the Listbox, and the data display style is customized by the current user to achieve personalized customization. Example：12345678910111213&lt;ListBox Margin=&quot;10&quot; ItemsSource=&quot;&#123;Binding Datas&#125;&quot; Style=&quot;&#123;DynamicResource ListBoxCustom&#125;&quot;&gt; &lt;ListBox.ItemTemplate&gt; &lt;DataTemplate&gt; &lt;Border BorderThickness=&quot;1&quot; BorderBrush=&quot;Black&quot; Margin=&quot;0,5&quot;&gt; &lt;DockPanel LastChildFill=&quot;True&quot;&gt; &lt;Path DockPanel.Dock=&quot;Left&quot; Fill=&quot;YellowGreen&quot; Width=&quot;20&quot; Margin=&quot;10,0,10,0&quot; HorizontalAlignment=&quot;Center&quot; Data=&quot;&#123;DynamicResource BubbleTailGeometry&#125;&quot;&gt;&lt;/Path&gt; &lt;TextBlock Padding=&quot;10&quot; Text=&quot;&#123;Binding Name&#125;&quot;&gt;&lt;/TextBlock&gt; &lt;/DockPanel&gt; &lt;/Border&gt; &lt;/DataTemplate&gt; &lt;/ListBox.ItemTemplate&gt;&lt;/ListBox&gt; WrapPanelHorizontalListBox : ListBoxCustomThe layout container is WrapPanel, and the display style is horizontal. Example：12345678910111213&lt;ListBox Margin=&quot;10&quot; ItemsSource=&quot;&#123;Binding Datas&#125;&quot; Style=&quot;&#123;DynamicResource WrapPanelHorizontalListBox&#125;&quot;&gt; &lt;ListBox.ItemTemplate&gt; &lt;DataTemplate&gt; &lt;Border BorderThickness=&quot;1&quot; BorderBrush=&quot;Black&quot; Margin=&quot;5,0&quot;&gt; &lt;DockPanel LastChildFill=&quot;True&quot;&gt; &lt;Path DockPanel.Dock=&quot;Left&quot; Fill=&quot;YellowGreen&quot; Width=&quot;20&quot; Margin=&quot;10,0,10,0&quot; HorizontalAlignment=&quot;Center&quot; Data=&quot;&#123;DynamicResource BubbleTailGeometry&#125;&quot;&gt;&lt;/Path&gt; &lt;TextBlock Padding=&quot;10&quot; Text=&quot;&#123;Binding Name&#125;&quot;&gt;&lt;/TextBlock&gt; &lt;/DockPanel&gt; &lt;/Border&gt; &lt;/DataTemplate&gt; &lt;/ListBox.ItemTemplate&gt;&lt;/ListBox&gt; WrapPanelVerticalListBox : ListBoxCustomThe layout container is WrapPanel, and the display style is vertical. Example：12345678910111213&lt;ListBox Margin=&quot;10&quot; ItemsSource=&quot;&#123;Binding Datas&#125;&quot; Style=&quot;&#123;DynamicResource WrapPanelVerticalListBox&#125;&quot;&gt; &lt;ListBox.ItemTemplate&gt; &lt;DataTemplate&gt; &lt;Border BorderThickness=&quot;1&quot; BorderBrush=&quot;Black&quot; Margin=&quot;0,5&quot;&gt; &lt;DockPanel LastChildFill=&quot;True&quot;&gt; &lt;Path DockPanel.Dock=&quot;Left&quot; Fill=&quot;YellowGreen&quot; Width=&quot;20&quot; Margin=&quot;10,0,10,0&quot; HorizontalAlignment=&quot;Center&quot; Data=&quot;&#123;DynamicResource BubbleTailGeometry&#125;&quot;&gt;&lt;/Path&gt; &lt;TextBlock Padding=&quot;10&quot; Text=&quot;&#123;Binding Name&#125;&quot;&gt;&lt;/TextBlock&gt; &lt;/DockPanel&gt; &lt;/Border&gt; &lt;/DataTemplate&gt; &lt;/ListBox.ItemTemplate&gt;&lt;/ListBox&gt; StackPanelHorizontalListBox : ListBoxCustomThe layout container is a StackPanel, and the display style is horizontal. Example：12345678910111213&lt;ListBox Margin=&quot;10&quot; ItemsSource=&quot;&#123;Binding Datas&#125;&quot; Style=&quot;&#123;DynamicResource StackPanelHorizontalListBox&#125;&quot;&gt; &lt;ListBox.ItemTemplate&gt; &lt;DataTemplate&gt; &lt;Border BorderThickness=&quot;1&quot; BorderBrush=&quot;Black&quot; Margin=&quot;5,0&quot;&gt; &lt;DockPanel LastChildFill=&quot;True&quot;&gt; &lt;Path DockPanel.Dock=&quot;Left&quot; Fill=&quot;YellowGreen&quot; Width=&quot;20&quot; Margin=&quot;10,0,10,0&quot; HorizontalAlignment=&quot;Center&quot; Data=&quot;&#123;DynamicResource BubbleTailGeometry&#125;&quot;&gt;&lt;/Path&gt; &lt;TextBlock Padding=&quot;10&quot; Text=&quot;&#123;Binding Name&#125;&quot;&gt;&lt;/TextBlock&gt; &lt;/DockPanel&gt; &lt;/Border&gt; &lt;/DataTemplate&gt; &lt;/ListBox.ItemTemplate&gt;&lt;/ListBox&gt; StackPanelVerticalListBox : ListBoxCustomThe layout container is a StackPanel, which displays the style vertically. Example：12345678910111213&lt;ListBox Margin=&quot;10&quot; ItemsSource=&quot;&#123;Binding Datas&#125;&quot; Style=&quot;&#123;DynamicResource StackPanelVerticalListBox&#125;&quot;&gt; &lt;ListBox.ItemTemplate&gt; &lt;DataTemplate&gt; &lt;Border BorderThickness=&quot;1&quot; BorderBrush=&quot;Black&quot; Margin=&quot;0,1&quot;&gt; &lt;DockPanel LastChildFill=&quot;True&quot;&gt; &lt;Path DockPanel.Dock=&quot;Left&quot; Fill=&quot;YellowGreen&quot; Width=&quot;20&quot; Margin=&quot;10,0,10,0&quot; HorizontalAlignment=&quot;Center&quot; Data=&quot;&#123;DynamicResource BubbleTailGeometry&#125;&quot;&gt;&lt;/Path&gt; &lt;TextBlock Padding=&quot;10&quot; Text=&quot;&#123;Binding Name&#125;&quot;&gt;&lt;/TextBlock&gt; &lt;/DockPanel&gt; &lt;/Border&gt; &lt;/DataTemplate&gt; &lt;/ListBox.ItemTemplate&gt;&lt;/ListBox&gt;]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Menu]]></title>
+    <url>%2Fhandycontrol%2Fnative_controls%2Fmenu%2Findex.html</url>
+    <content type="text"><![CDATA[MenuBaseStyleThe default style of the menu is not recommended. It should always be used by other styles in the manner of BasedOn. 用例：1234567 &lt;Menu ItemsSource=&quot;&#123;Binding Menus&#125;&quot;&gt; &lt;Menu.ItemTemplate&gt; &lt;HierarchicalDataTemplate ItemsSource=&quot;&#123;Binding Children&#125;&quot;&gt; &lt;TextBlock Text=&quot;&#123;Binding Name&#125;&quot;&gt;&lt;/TextBlock&gt; &lt;/HierarchicalDataTemplate&gt; &lt;/Menu.ItemTemplate&gt;&lt;/Menu&gt;]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[ListView]]></title>
+    <url>%2Fhandycontrol%2Fnative_controls%2FlistView%2Findex.html</url>
+    <content type="text"><![CDATA[HandyControl only provides a default ListView style, which can be customized according to personal needs. Example：123456789&lt;ListView ItemsSource=&quot;&#123;Binding DataList&#125;&quot; Margin=&quot;20&quot;&gt; &lt;ListView.View&gt; &lt;GridView&gt; &lt;GridViewColumn Width=&quot;80&quot; Header=&quot;title1&quot; DisplayMemberBinding=&quot;&#123;Binding Index&#125;&quot;/&gt; &lt;GridViewColumn Width=&quot;100&quot; Header=&quot;title2&quot; DisplayMemberBinding=&quot;&#123;Binding Name&#125;&quot;/&gt; &lt;GridViewColumn Width=&quot;200&quot; Header=&quot;title3&quot; DisplayMemberBinding=&quot;&#123;Binding Remark&#125;&quot;/&gt; &lt;/GridView&gt; &lt;/ListView.View&gt;&lt;/ListView&gt;]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[PasswordBox]]></title>
+    <url>%2Fhandycontrol%2Fnative_controls%2FpasswordBox%2Findex.html</url>
+    <content type="text"><![CDATA[PasswordBoxBaseStyleThe default style of the native password box is not recommended. It should always be used by other styles based on On. Example：1&lt;PasswordBox PasswordChar=&quot;*&quot; VerticalAlignment=&quot;Center&quot; Width=&quot;120&quot;&gt;&lt;/PasswordBox&gt; PasswordBoxExtendBaseStyle : PasswordBoxBaseStyleThe native password box extends the default style. It is not recommended to use it directly, and it should always be used by other styles as BasedOn. PasswordBoxExtend : PasswordBoxExtendBaseStyleCompared to the default style of the native password box, it can implement the functions of title and watermark with the help of additional attributes. 用例：1234567891011&lt;!–In order to display the watermark in the normal password input text box, you need to set PasswordBoxAttach.PasswordLength=&quot;0&quot;–&gt;&lt;PasswordBox Style=&quot;&#123;DynamicResource PasswordBoxExtend&#125;&quot; PasswordChar=&quot;&quot; hc:PasswordBoxAttach.PasswordLength=&quot;0&quot; hc:InfoElement.Placeholder=&quot;Please enter the password&quot; VerticalAlignment=&quot;Center&quot; Width=&quot;120&quot;&gt;&lt;/PasswordBox&gt;&lt;PasswordBox Style=&quot;&#123;DynamicResource PasswordBoxExtend&#125;&quot; PasswordChar=&quot;&quot; hc:TitleElement.Title=&quot;user password:&quot; hc:TitleElement.TitleAlignment=&quot;Top&quot; VerticalAlignment=&quot;Center&quot; Width=&quot;120&quot;&gt;&lt;/PasswordBox&gt;]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[RadioButton]]></title>
+    <url>%2Fhandycontrol%2Fnative_controls%2FradioButton%2Findex.html</url>
+    <content type="text"><![CDATA[RadioButtonBaseStyleThe default style of the radio button is not recommended. It should always be used by other styles as BasedOn. Case: 123456&lt;StackPanel&gt; &lt;RadioButton Content="Default style"/&gt; &lt;RadioButton Margin="0,16,0,0" Content="Not editable" IsChecked="True" IsEnabled="False"/&gt; &lt;RadioButton Margin="0,16,0,0" Content="Default style"/&gt; &lt;RadioButton Margin="0,16,0,0" Content="Not editable" IsEnabled="False"/&gt;&lt;/StackPanel&gt; effect: RadioButtonIcon : RadioButtonBaseStyleWith icon style, can display only icons or graphics Case: 123456&lt;UniformGrid Margin="22,0,0,0" Rows="2" Columns="2"&gt; &lt;RadioButton Margin="10,0,0,0" Background="&#123;DynamicResource SecondaryRegionBrush&#125;" hc:IconElement.Geometry="&#123;StaticResource CalendarGeometry&#125;" Style="&#123;StaticResource RadioButtonIcon&#125;" Content="RadioButtonIcon"/&gt; &lt;RadioButton Margin="10,0,0,0" Background="&#123;DynamicResource SecondaryRegionBrush&#125;" Style="&#123;StaticResource RadioButtonIcon&#125;" Content="RadioButtonIcon" IsChecked="True"/&gt; &lt;RadioButton Margin="10,0,0,0" BorderThickness="1" hc:IconElement.Geometry="&#123;StaticResource CalendarGeometry&#125;" Style="&#123;StaticResource RadioButtonIcon&#125;" Content="RadioButtonIcon"/&gt; &lt;RadioButton Margin="10,0,0,0" BorderThickness="1" Style="&#123;StaticResource RadioButtonIcon&#125;" Content="RadioButtonIcon"/&gt;&lt;/UniformGrid&gt; effect:]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[RichTextBox]]></title>
+    <url>%2Fhandycontrol%2Fnative_controls%2FrichTextBox%2Findex.html</url>
+    <content type="text"><![CDATA[TextBoxBaseBaseStyleThe default style of the basic text control is not recommended. It should always be used by other styles as BasedOn. RichTextBoxBaseStyle : TextBoxBaseBaseStyleThe default style of the rich text box is not recommended. It should always be used by other styles as BasedOn. Case: 1&lt;RichTextBox Margin="10,10" VerticalAlignment="Center" HorizontalAlignment="Center"&gt;&lt;/RichTextBox&gt; 1&lt;RichTextBox Margin="10,10" VerticalAlignment="Center" HorizontalAlignment="Center"&gt;&lt;/RichTextBox&gt; effect:]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[ProgressBar]]></title>
+    <url>%2Fhandycontrol%2Fnative_controls%2FprogressBar%2Findex.html</url>
+    <content type="text"><![CDATA[ProgressBarBaseStyleThe default style of the progress bar. It is not recommended to use it directly, and it should always be used by other styles as BasedOn. Other stylesOther styles and effects included in HandyControl, including the following styles: Style Key Uses Parent Style ProgressBarSuccess Progress bar progress bar ProgressBarBaseStyle ProgressBarInfo Prompt Color Progress Bar ProgressBarBaseStyle ProgressBarWarning Warning color progress bar ProgressBarBaseStyle ProgressBarDanger Dangerous Progress Bar ProgressBarBaseStyle ProgressBarStripeBaseStyle Stripe progress bar default style (not recommended for direct use) - ProgressBarPrimaryStripe Stripe Progress Bar ProgressBarStripeBaseStyle ProgressBarSuccessStripe Progress Bar Stripe Progress Bar ProgressBarStripeBaseStyle ProgressBarInfoStripe Information color stripe progress bar ProgressBarStripeBaseStyle ProgressBarWarningStripe Progress bar with warning stripes ProgressBarStripeBaseStyle ProgressBarDangerStripe Dangerous Stripe Progress Bar ProgressBarStripeBaseStyle ProgressBarFlat Flat style - Case: 1234567891011121314151617181920212223242526272829303132333435363738394041424344&lt;StackPanel Margin="20"&gt; &lt;TextBlock Text="Default style"&gt;&lt;/TextBlock&gt; &lt;ProgressBar Value="40"&gt;&lt;/ProgressBar&gt; &lt;/StackPanel&gt; &lt;StackPanel Margin="20"&gt; &lt;TextBlock Text="ProgressBarSuccess"&gt;&lt;/TextBlock&gt; &lt;ProgressBar Style="&#123;DynamicResource ProgressBarSuccess&#125;" Value="40"&gt;&lt;/ProgressBar&gt; &lt;/StackPanel&gt; &lt;StackPanel Margin="20"&gt; &lt;TextBlock Text="ProgressBarInfo"&gt;&lt;/TextBlock&gt; &lt;ProgressBar Style="&#123;DynamicResource ProgressBarInfo&#125;" Value="40"&gt;&lt;/ProgressBar&gt; &lt;/StackPanel&gt; &lt;StackPanel Margin="20"&gt; &lt;TextBlock Text="ProgressBarWarning"&gt;&lt;/TextBlock&gt; &lt;ProgressBar Style="&#123;DynamicResource ProgressBarWarning&#125;" Value="40"&gt;&lt;/ProgressBar&gt; &lt;/StackPanel&gt; &lt;StackPanel Margin="20"&gt; &lt;TextBlock Text="ProgressBarDanger"&gt;&lt;/TextBlock&gt; &lt;ProgressBar Style="&#123;DynamicResource ProgressBarDanger&#125;" Value="40"&gt;&lt;/ProgressBar&gt; &lt;/StackPanel&gt; &lt;StackPanel Margin="20"&gt; &lt;TextBlock Text="ProgressBarPrimaryStripe"&gt;&lt;/TextBlock&gt; &lt;ProgressBar Style="&#123;DynamicResource ProgressBarPrimaryStripe&#125;" Value="40"&gt;&lt;/ProgressBar&gt; &lt;/StackPanel&gt; &lt;StackPanel Margin="20"&gt; &lt;TextBlock Text="ProgressBarSuccessStripe"&gt;&lt;/TextBlock&gt; &lt;ProgressBar Style="&#123;DynamicResource ProgressBarSuccessStripe&#125;" Value="40"&gt;&lt;/ProgressBar&gt; &lt;/StackPanel&gt; &lt;StackPanel Margin="20"&gt; &lt;TextBlock Text="ProgressBarInfoStripe"&gt;&lt;/TextBlock&gt; &lt;ProgressBar Style="&#123;DynamicResource ProgressBarInfoStripe&#125;" Value="40"&gt;&lt;/ProgressBar&gt; &lt;/StackPanel&gt; &lt;StackPanel Margin="20"&gt; &lt;TextBlock Text="ProgressBarWarningStripe"&gt;&lt;/TextBlock&gt; &lt;ProgressBar Style="&#123;DynamicResource ProgressBarWarningStripe&#125;" Value="40"&gt;&lt;/ProgressBar&gt; &lt;/StackPanel&gt; &lt;StackPanel Margin="20"&gt; &lt;TextBlock Text="ProgressBarDangerStripe"&gt;&lt;/TextBlock&gt; &lt;ProgressBar Style="&#123;DynamicResource ProgressBarDangerStripe&#125;" Value="40"&gt;&lt;/ProgressBar&gt; &lt;/StackPanel&gt; &lt;StackPanel Margin="20"&gt; &lt;TextBlock Text="ProgressBarFlat"&gt;&lt;/TextBlock&gt; &lt;ProgressBar Style="&#123;DynamicResource ProgressBarFlat&#125;" Value="40"&gt;&lt;/ProgressBar&gt; &lt;/StackPanel&gt; effect: TipsFor color, rounded corners or other custom requirements, please refer to Progress Bar Style SourceDefine it yourself.]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[ScrollViewer]]></title>
+    <url>%2Fhandycontrol%2Fnative_controls%2FscrollViewer%2Findex.html</url>
+    <content type="text"><![CDATA[ScrollViewerNativeBaseStyleThe default style of the native scroll view is not recommended. It should always be used by other styles based on On. Case: 12345&lt;ScrollViewer&gt; &lt;Grid Height="500"&gt; &lt;TextBlock Text="Content area"&gt;&lt;/TextBlock&gt; &lt;/Grid&gt;&lt;/ScrollViewer&gt; effect: ScrollViewerUpDownScroll view style showing up and down buttons Case: 12345678&lt;ScrollViewer Style="&#123;StaticResource ScrollViewerUpDown&#125;"&gt; &lt;StackPanel Height="500"&gt; &lt;TextBlock Text="Content area" Height="250"&gt;&lt;/TextBlock&gt; &lt;TextBlock Text="Content area" Height="250"&gt;&lt;/TextBlock&gt; &lt;TextBlock Text="Content area"&gt;&lt;/TextBlock&gt; &lt;TextBlock Text="Content area"&gt;&lt;/TextBlock&gt; &lt;/StackPanel&gt;&lt;/ScrollViewer&gt; effect:]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Seperator]]></title>
+    <url>%2Fhandycontrol%2Fnative_controls%2Fseperator%2Findex.html</url>
+    <content type="text"><![CDATA[SeparatorBaseStyleThe default style of the delimiter is not recommended. It should always be used by other styles as BasedOn.]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Slider]]></title>
+    <url>%2Fhandycontrol%2Fnative_controls%2Fslider%2Findex.html</url>
+    <content type="text"><![CDATA[SliderBaseStyleThe default style of the slider is not recommended. It should always be used by other styles as BasedOn. Case: 1&lt;Slider VerticalAlignment="Center" Width="400" Value="40" Maximum="100"/&gt; effect:]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[StatusBar]]></title>
+    <url>%2Fhandycontrol%2Fnative_controls%2FstatusBar%2Findex.html</url>
+    <content type="text"><![CDATA[StatusBarBaseStyleThe default style of the status bar is not recommended. It should always be used by other styles as BasedOn.]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[建设中]]></title>
+    <url>%2Fhandycontrol%2Fnative_controls%2FtextBlock%2Findex.html</url>
+    <content type="text"><![CDATA[建设中]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[建设中]]></title>
+    <url>%2Fhandycontrol%2Fnative_controls%2FtextBox%2Findex.html</url>
+    <content type="text"><![CDATA[建设中]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[TabControl]]></title>
+    <url>%2Fhandycontrol%2Fnative_controls%2FtabControl%2Findex.html</url>
+    <content type="text"><![CDATA[TabControlBaseStyleThe default style of the tab control is not recommended. It should always be used by other styles as BasedOn. Case: 12345678&lt;TabControl Margin="10"&gt; &lt;TabItem Header="Tab 1"&gt; &lt;/TabItem&gt; &lt;TabItem Header="Tab 2"&gt; &lt;/TabItem&gt; &lt;TabItem Header="Tab 3"&gt; &lt;/TabItem&gt;&lt;/TabControl&gt; effect:: TabControlInLine : TabControlBaseStyleSingle line fill tab style Case: 12345678&lt;TabControl Margin="10" Style="&#123;StaticResource TabControlInLine&#125;"&gt; &lt;TabItem Header="Tab 1"&gt; &lt;/TabItem&gt; &lt;TabItem Header="Tab 2"&gt; &lt;/TabItem&gt; &lt;TabItem Header="Tab 3"&gt; &lt;/TabItem&gt;&lt;/TabControl&gt; effect:: TabControlCapsuleCapsule tab style Case: 12345678&lt;TabControl Margin="10" Style="&#123;StaticResource TabControlCapsule&#125;"&gt; &lt;TabItem Header="Tab 1"&gt; &lt;/TabItem&gt; &lt;TabItem Header="Tab 2"&gt; &lt;/TabItem&gt; &lt;TabItem Header="Tab 3"&gt; &lt;/TabItem&gt;&lt;/TabControl&gt; effect:: TabControlCapsuleSolid : TabControlCapsuleCapsule (solid) tab style Case: 12345678&lt;TabControl Margin="10" Style="&#123;StaticResource TabControlCapsuleSolid&#125;"&gt; &lt;TabItem Header="Tab 1"&gt; &lt;/TabItem&gt; &lt;TabItem Header="Tab 2"&gt; &lt;/TabItem&gt; &lt;TabItem Header="Tab 3"&gt; &lt;/TabItem&gt;&lt;/TabControl&gt; effect:: TipsYou can use the property TabStripPlacement to set the position of the header title, the effect is as follows:]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[建设中]]></title>
+    <url>%2Fhandycontrol%2Fnative_controls%2FtoolBar%2Findex.html</url>
+    <content type="text"><![CDATA[建设中]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[建设中]]></title>
+    <url>%2Fhandycontrol%2Fnative_controls%2FtoggleButton%2Findex.html</url>
+    <content type="text"><![CDATA[建设中]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[建设中]]></title>
+    <url>%2Fhandycontrol%2Fnative_controls%2FtoolTip%2Findex.html</url>
+    <content type="text"><![CDATA[建设中]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[建设中]]></title>
+    <url>%2Fhandycontrol%2Fnative_controls%2FtreeView%2Findex.html</url>
+    <content type="text"><![CDATA[建设中]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[建设中]]></title>
+    <url>%2Fhandycontrol%2Fnative_controls%2Fwindow%2Findex.html</url>
+    <content type="text"><![CDATA[建设中]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[HatchBrushGenerator]]></title>
+    <url>%2Fhandycontrol%2Ftools%2FhatchBrushGenerator%2Findex.html</url>
+    <content type="text"><![CDATA[first create ObjectProvider in App.xamlxmlns:sys=&quot;clr-namespace:System;assembly=mscorlib&quot; 12345 &lt;ObjectDataProvider x:Key="HatchStyles" MethodName="GetValues" ObjectType="sys:Enum"&gt; &lt;ObjectDataProvider.MethodParameters&gt; &lt;x:Type Type="hc:HatchStyle"/&gt; &lt;/ObjectDataProvider.MethodParameters&gt;&lt;/ObjectDataProvider&gt; then create a HatchBrushConverter converter 1234567891011121314151617181920212223public class HatchBrushConverter : IValueConverter &#123; private readonly HatchBrushGenerator _brushGenerator; public HatchBrushConverter() &#123; _brushGenerator = new HatchBrushGenerator(); &#125; public object Convert(object value, Type targetType, object parameter, CultureInfo culture) &#123; if (value is HatchStyle style) &#123; return _brushGenerator.GetHatchBrush(style, ResourceHelper.GetResource&lt;Color&gt;(&quot;DarkPrimaryColor&quot;), ResourceHelper.GetResource&lt;Color&gt;(&quot;BackgroundColor&quot;)); &#125; return Brushes.Transparent; &#125; public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) &#123; throw new NotImplementedException(); &#125; &#125; now you can use hatch 123&lt;Border Style="&#123;StaticResource BorderRegion&#125;" Margin="32" Background="&#123;Binding SelectedValue,ElementName=ComboBoxDemo,Converter=&#123;StaticResource HatchBrushConverter&#125;&#125;"&gt; &lt;ComboBox SelectedIndex="0" VerticalAlignment="Center" Name="ComboBoxDemo" Width="180" ItemsSource="&#123;Binding Source=&#123;StaticResource HatchStyles&#125;&#125;"/&gt; &lt;/Border&gt; Available Style Horizontal Vertical ForwardDiagonal BackwardDiagonal Cross DiagonalCross Percent05 Percent10 Percent20 Percent25 Percent30 Percent40 Percent50 Percent60 Percent70 Percent75 Percent80 Percent90 LightDownwardDiagonal LightUpwardDiagonal DarkDownwardDiagonal DarkUpwardDiagonal WideDownwardDiagonal WideUpwardDiagonal LightVertical LightHorizontal NarrowVertical NarrowHorizontal DarkVertical DarkHorizontal DashedDownwardDiagonal DashedUpwardDiagonal DashedHorizontal DashedVertical SmallConfetti LargeConfetti ZigZag Wave DiagonalBrick HorizontalBrick Weave Plaid Divot DottedGrid DottedDiamond Shingle Trellis Sphere SmallGrid SmallCheckerBoard LargeCheckerBoard OutlinedDiamond SolidDiamond Available Methods GetHashCode GetHatchBrush]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Effect]]></title>
+    <url>%2Fhandycontrol%2Ftools%2Feffect%2Findex.html</url>
+    <content type="text"><![CDATA[Name Use Input Scale [Only GrayScaleEffect] GrayScaleEffect12345&lt;Image Width="120" Height="120" Source="/HandyControlDemo;component/Resources/Img/Album/10.jpg"&gt; &lt;Image.Effect&gt; &lt;hc:GrayScaleEffect/&gt; &lt;/Image.Effect&gt; &lt;/Image&gt; ColorComplementEffect12345&lt;Image Width="120" Height="120" Source="/HandyControlDemo;component/Resources/Img/Album/10.jpg"&gt; &lt;Image.Effect&gt; &lt;hc:ColorComplementEffect/&gt; &lt;/Image.Effect&gt; &lt;/Image&gt;]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[MorphingAnimation]]></title>
+    <url>%2Fhandycontrol%2Ftools%2FmorphingAnimation%2Findex.html</url>
+    <content type="text"><![CDATA[With MorphingAnimation You can change a geometry with animation to a different geometry Geometries must have the same number of points! in your xaml add resources and storyboard 1234567891011121314151617181920212223242526&lt;UserControl.Resources&gt; &lt;Storyboard x:Key="StoryboardOnLoaded" RepeatBehavior="Forever" AutoReverse="True"&gt; &lt;hc:GeometryAnimationUsingKeyFrames Storyboard.TargetProperty="Data" Storyboard.TargetName="PathDemo"&gt; &lt;hc:DiscreteGeometryKeyFrame KeyTime="0:0:0.7" Value="&#123;StaticResource FaceBookGeometry&#125;"/&gt; &lt;hc:EasingGeometryKeyFrame KeyTime="0:0:1.2" Value="&#123;StaticResource TwitterGeometry&#125;"&gt; &lt;hc:EasingGeometryKeyFrame.EasingFunction&gt; &lt;QuarticEase EasingMode="EaseInOut"/&gt; &lt;/hc:EasingGeometryKeyFrame.EasingFunction&gt; &lt;/hc:EasingGeometryKeyFrame&gt; &lt;/hc:GeometryAnimationUsingKeyFrames&gt; &lt;ColorAnimationUsingKeyFrames Storyboard.TargetProperty="Fill.(SolidColorBrush.Color)" Storyboard.TargetName="PathDemo"&gt; &lt;DiscreteColorKeyFrame KeyTime="0:0:0.7" Value="#3b5998"/&gt; &lt;EasingColorKeyFrame KeyTime="0:0:1.2" Value="#4099ff"&gt; &lt;EasingColorKeyFrame.EasingFunction&gt; &lt;QuarticEase EasingMode="EaseInOut"/&gt; &lt;/EasingColorKeyFrame.EasingFunction&gt; &lt;/EasingColorKeyFrame&gt; &lt;EasingColorKeyFrame KeyTime="0:0:1.9" Value="#4099ff"/&gt; &lt;/ColorAnimationUsingKeyFrames&gt; &lt;/Storyboard&gt; &lt;/UserControl.Resources&gt; &lt;UserControl.Triggers&gt; &lt;EventTrigger RoutedEvent="FrameworkElement.Loaded"&gt; &lt;BeginStoryboard Storyboard="&#123;StaticResource StoryboardOnLoaded&#125;"/&gt; &lt;/EventTrigger&gt; &lt;/UserControl.Triggers&gt; now we need a path to display geometry 1&lt;Path Name="PathDemo" Width="100" Height="100" Data="&#123;StaticResource FaceBookGeometry&#125;" Fill="#3b5998"/&gt;]]></content>
+  </entry>
+</search>
